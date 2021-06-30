@@ -88,8 +88,10 @@ class UserInfoVC: UIViewController {
             case .failure(let error):
                 self.presentFAlertOnMainThread(title: "There was a problem", message: error.rawValue, buttonTitle: "Ok", errorType: .networkError)
             }
+            DispatchQueue.main.async {
+                self.tweetTable.reloadData()
+            }
         }
-        tweetTable.reloadData()
     }
 }
 

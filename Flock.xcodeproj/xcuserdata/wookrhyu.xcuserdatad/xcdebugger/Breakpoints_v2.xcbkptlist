@@ -8,14 +8,14 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "D9B07708-E1BF-4F37-8EE0-8E715F671E49"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Flock/Screens/UserInfoVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "101"
-            endingLineNumber = "101"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -23,33 +23,49 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "900EBA04-BD1A-4B60-967B-50B3211A294D"
+            uuid = "C2EC1057-CD95-4A60-9E3C-D941B6C2C5F1"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Flock/Screens/UserInfoVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
-            landmarkName = "tableView(_:cellForRowAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "C9BA2E07-C305-46B3-AC5B-A671074C83C7"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Flock/Screens/UserInfoVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
             landmarkName = "getTweets(id:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "C2EC1057-CD95-4A60-9E3C-D941B6C2C5F1 - 92d12f5e40a4e58c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Flock.UserInfoVC.getTweets(id: Swift.String) -&gt; ()"
+                  moduleName = "Flock"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/wookrhyu/Desktop/Wooks%20Coding%20Stuff/Flock/Flock/Screens/UserInfoVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "80"
+                  endingLineNumber = "80"
+                  offsetFromSymbolStart = "64">
+               </Location>
+               <Location
+                  uuid = "C2EC1057-CD95-4A60-9E3C-D941B6C2C5F1 - 9ba92cfc1c4edd58"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Flock.Tweets, Flock.FError&gt;) -&gt; () in Flock.UserInfoVC.getTweets(id: Swift.String) -&gt; ()"
+                  moduleName = "Flock"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/wookrhyu/Desktop/Wooks%20Coding%20Stuff/Flock/Flock/Screens/UserInfoVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "80"
+                  endingLineNumber = "80"
+                  offsetFromSymbolStart = "248">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
