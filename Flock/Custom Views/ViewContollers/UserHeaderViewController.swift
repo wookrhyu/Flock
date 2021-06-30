@@ -43,7 +43,6 @@ class UserHeaderViewController: UIViewController {
         twitterhandle.text      = "@\(FollowersData.username)"
         bio.text                = FollowersData.description
         bio.numberOfLines       = 4
-
         followerCount.text      = String(FollowersData.public_metrics.followers_count)
         followingCount.text     = String(FollowersData.public_metrics.following_count)
         bio.textColor           = .black

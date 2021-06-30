@@ -63,7 +63,7 @@ class UserInfoVC: UIViewController {
         
         tweetTable.translatesAutoresizingMaskIntoConstraints = false
         tweetTable.frame                = view.bounds
-        tweetTable.rowHeight            = 70
+        tweetTable.rowHeight            = 90
         tweetTable.delegate             = self
         tweetTable.dataSource           = self
         tweetTable.register(TweetCell.self, forCellReuseIdentifier: "TweetCell")
@@ -91,14 +91,6 @@ class UserInfoVC: UIViewController {
         }
         tweetTable.reloadData()
     }
-    
-    private func updateUI() {
-        DispatchQueue.main.async {
-            self.tweetTable.reloadData()
-        }
-    }
-    
-    
 }
 
 extension UserInfoVC: UITableViewDelegate, UITableViewDataSource{
@@ -116,3 +108,4 @@ extension UserInfoVC: UITableViewDelegate, UITableViewDataSource{
 
 
 }
+

@@ -33,7 +33,6 @@ class NetworkManager {
             if let data = data{
                 do {
                     let userID = try JSONDecoder().decode(User.self, from: data)//data and data?
-                    print(userID.data.id)
                     completed(.success(userID))
                 } catch {
                     completed(.failure(.networkError))
@@ -114,8 +113,6 @@ class NetworkManager {
         getId(for: username) { result in
             switch result {
             case .success(let users):
-                print(users.data.id)
-                
                 let userID = Int(users.data.id)
                 self.getFollowers(for: userID!) { result in
                     
@@ -141,8 +138,6 @@ class NetworkManager {
         getId(for: username) { result in
             switch result {
             case .success(let users):
-                print(users.data.id)
-                
                 let userID = Int(users.data.id)
                 self.getFollowing(for: userID!) { result in
                     
@@ -165,7 +160,7 @@ class NetworkManager {
     }
     
     func getTweets(of id: String, completed: @escaping (Result<Tweets, FError>)-> Void){
-        let endpoint = "https://api.twitter.com/2/users/\(id)/tweets?max_results=5"
+        let endpoint = "https://api.twitter.com/2/users/\(id)/tweets?max_results=20"
         
         guard let url = URL(string: endpoint) else {
             completed(.failure(.invalidHandle))

@@ -33,7 +33,6 @@ class MainSearchScreenVC: UIViewController {
         super.viewWillAppear(animated)
         twitterHandleTextField.text = ""
         navigationController?.setNavigationBarHidden(true, animated: true)
-        print("Hi")
     }
     
     func dissmissKeyboard() {

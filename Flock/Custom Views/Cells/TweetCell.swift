@@ -9,7 +9,7 @@ import UIKit
 
 class TweetCell: UITableViewCell {
     
-    let tweet  = FTitleLabel()
+    let tweet  = FBodyLabel(textAlignment: .center)
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style:style, reuseIdentifier: reuseIdentifier)
@@ -18,14 +18,14 @@ class TweetCell: UITableViewCell {
     
     private func configureTweetLabel() {
         addSubview(tweet)
+        tweet.numberOfLines = 3
         tweet.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            tweet.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0),
-            tweet.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0),
-            tweet.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0),
-            tweet.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0),
-            
+            tweet.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
+            tweet.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
+            tweet.widthAnchor.constraint(equalToConstant: 370),
+            tweet.heightAnchor.constraint(equalToConstant: 64)
         ])
     }
     
