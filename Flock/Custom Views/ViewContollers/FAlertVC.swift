@@ -17,15 +17,17 @@ class FAlertVC: UIViewController {
     var alertTitle: String?
     var message: String?
     var buttonTitle: String?
+    var errorType: FError
     
     let padding: CGFloat = 20
     
-    init(title: String, message: String, buttonTitle: String) {
-        super.init(nibName: nil, bundle: nil)
+    init(title: String, message: String, buttonTitle: String, errorType: FError) {
         self.alertTitle                 = title
         self.message                    = message
         self.buttonTitle                = buttonTitle
-    }
+        self.errorType                  = errorType
+        super.init(nibName: nil, bundle: nil)
+        }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -69,7 +71,13 @@ class FAlertVC: UIViewController {
     func configureSearchButton() {
         view.addSubview(searchButton)
         searchButton.setTitle(buttonTitle ?? "Ok", for: .normal)
-        searchButton.addTarget(self, action: #selector(dismissVC), for: .touchUpInside)
+        
+        if errorType == .networkError {
+            searchButton.addTarget(self, action: #selector(backToMainSearch), for: .touchUpInside)
+        } else {
+            searchButton.addTarget(self, action: #selector(dismissVC), for: .touchUpInside)
+
+        }
         
         NSLayoutConstraint.activate([
             searchButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -padding),
@@ -95,6 +103,10 @@ class FAlertVC: UIViewController {
     
     
     @objc func dismissVC() {
+        dismiss(animated: true)
+    }
+    
+    @objc func backToMainSearch() {
         dismiss(animated: true)
     }
     

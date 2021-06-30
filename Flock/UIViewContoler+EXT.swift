@@ -9,9 +9,9 @@ import UIKit
 
 extension UIViewController {
     
-    func presentFAlertOnMainThread(title: String, message: String, buttonTitle: String){
+    func presentFAlertOnMainThread(title: String, message: String, buttonTitle: String, errorType: FError){
         DispatchQueue.main.async {
-            let alertVC = FAlertVC(title: title, message: message, buttonTitle: buttonTitle)
+            let alertVC = FAlertVC(title: title, message: message, buttonTitle: buttonTitle, errorType: errorType)
             alertVC.modalPresentationStyle  = .overFullScreen
             alertVC.modalTransitionStyle    = .crossDissolve
             self.present(alertVC, animated: true)

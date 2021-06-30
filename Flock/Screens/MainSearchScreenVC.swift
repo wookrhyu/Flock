@@ -33,6 +33,7 @@ class MainSearchScreenVC: UIViewController {
         super.viewWillAppear(animated)
         twitterHandleTextField.text = ""
         navigationController?.setNavigationBarHidden(true, animated: true)
+        print("Hi")
     }
     
     func dissmissKeyboard() {
@@ -44,17 +45,15 @@ class MainSearchScreenVC: UIViewController {
     @objc func pushFollowingAndFollowerTabBarContoller() {
         
         guard !isTextEntered else {
-            presentFAlertOnMainThread(title: "Hey!", message: "Please type in a twitter handle", buttonTitle: "ok")
+            
+            presentFAlertOnMainThread(title: "Hey!", message: "Seems like you have not entered in anything, Please type in a valid twitter handle", buttonTitle: "Ok", errorType: FError.invalidHandle)
             return
         }
         
         twitterHandleTextField.resignFirstResponder()
-        
-        let followingAndFollowerTabBarContoller = FollowingAndFollowerTabBarController()
-        navigationController?.pushViewController(followingAndFollowerTabBarContoller, animated: true)
-        
+        let followingAndFollowerTabBarContoller = FollowingAndFollowerTabBarController(username: twitterHandleTextField.text!)
+        self.navigationController?.pushViewController(followingAndFollowerTabBarContoller, animated: true)
     }
-    
     
     private func configureLogoImageView() {
         view.addSubview(logoImageView)
@@ -71,6 +70,7 @@ class MainSearchScreenVC: UIViewController {
     
     private func configureTwitterHandleTextField() {
         view.addSubview(twitterHandleTextField)
+        twitterHandleTextField.delegate = self
         
         NSLayoutConstraint.activate([
             twitterHandleTextField.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 250),
@@ -86,7 +86,7 @@ class MainSearchScreenVC: UIViewController {
         searchButton.addTarget(self, action: #selector(pushFollowingAndFollowerTabBarContoller), for: .touchUpInside)
         
         NSLayoutConstraint.activate([
-            searchButton.topAnchor.constraint(equalTo: twitterHandleTextField.bottomAnchor, constant: 15),
+            searchButton.topAnchor.constraint(equalTo: twitterHandleTextField.bottomAnchor, constant: 5),
             searchButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
             searchButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
             searchButton.heightAnchor.constraint(equalToConstant: 50)
@@ -102,10 +102,17 @@ class MainSearchScreenVC: UIViewController {
         NSLayoutConstraint.activate([
             lowerBirds.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 70),
             lowerBirds.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            logoImageView.heightAnchor.constraint(equalToConstant: 2000),
-            logoImageView.widthAnchor.constraint(equalToConstant: 2000)
+            logoImageView.heightAnchor.constraint(equalToConstant: 80),
+            logoImageView.widthAnchor.constraint(equalToConstant: 325)
         ])
     }
     
 
+}
+
+extension MainSearchScreenVC: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        pushFollowingAndFollowerTabBarContoller()
+        return true
+    }
 }
