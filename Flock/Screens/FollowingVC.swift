@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FollowingVC: UIViewController {
+class FollowingVC: FDataLoadingVC {
     
     let tableView                               = UITableView()
     var following: [FollowingData]              = []
@@ -52,12 +52,16 @@ class FollowingVC: UIViewController {
     }
     
     private func getFollowing(username: String){
+        showLoadingView()
+        
         NetworkManager.shared.followingFromID(username: username) { [weak self] result in
             guard let self = self else { return }
+            self.dismissLoadingView()
             switch result {
             case .success(let following):
                 self.updateUI(with: following)
             case .failure(let error):
+                self.presentFAlertOnMainThread(title: "There was a problem", message: error.rawValue, buttonTitle: "Ok", errorType: .networkError)
                 return
             }
         }

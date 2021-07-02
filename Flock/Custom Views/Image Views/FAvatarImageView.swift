@@ -8,6 +8,8 @@
 import UIKit
 
 class FAvatarImageView: UIImageView {
+    
+    let cache                   = NetworkManager.shared.cache
 
     override init(frame: CGRect) {
         super.init(frame: frame)

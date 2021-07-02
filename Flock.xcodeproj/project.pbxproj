@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		536C2272268D2EA700A66D3D /* FDataLoadingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536C2271268D2EA700A66D3D /* FDataLoadingVC.swift */; };
+		536C2276268FA27800A66D3D /* MainUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536C2275268FA27800A66D3D /* MainUserVC.swift */; };
 		5393D5872669921100EBB543 /* FollowerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5393D5862669921100EBB543 /* FollowerVC.swift */; };
 		5393D5892669921C00EBB543 /* FollowingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5393D5882669921C00EBB543 /* FollowingVC.swift */; };
 		5393D58B2669931200EBB543 /* FollowingAndFollowerTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5393D58A2669931200EBB543 /* FollowingAndFollowerTabBarController.swift */; };
@@ -38,6 +40,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		536C2271268D2EA700A66D3D /* FDataLoadingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDataLoadingVC.swift; sourceTree = "<group>"; };
+		536C2275268FA27800A66D3D /* MainUserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainUserVC.swift; sourceTree = "<group>"; };
 		5393D5862669921100EBB543 /* FollowerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerVC.swift; sourceTree = "<group>"; };
 		5393D5882669921C00EBB543 /* FollowingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingVC.swift; sourceTree = "<group>"; };
 		5393D58A2669931200EBB543 /* FollowingAndFollowerTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingAndFollowerTabBarController.swift; sourceTree = "<group>"; };
@@ -147,9 +151,8 @@
 			isa = PBXGroup;
 			children = (
 				539C02A826852B1E0028A381 /* UserHeaderViewController.swift */,
-				5393D5882669921C00EBB543 /* FollowingVC.swift */,
-				5393D5862669921100EBB543 /* FollowerVC.swift */,
 				5393D593266FF65400EBB543 /* FAlertVC.swift */,
+				536C2271268D2EA700A66D3D /* FDataLoadingVC.swift */,
 			);
 			path = ViewContollers;
 			sourceTree = "<group>";
@@ -190,7 +193,10 @@
 			children = (
 				53A46B5726682FD000B71CA9 /* MainSearchScreenVC.swift */,
 				5393D58A2669931200EBB543 /* FollowingAndFollowerTabBarController.swift */,
+				5393D5882669921C00EBB543 /* FollowingVC.swift */,
+				5393D5862669921100EBB543 /* FollowerVC.swift */,
 				539C02A52683B52B0028A381 /* UserInfoVC.swift */,
+				536C2275268FA27800A66D3D /* MainUserVC.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -320,8 +326,10 @@
 				5393D5A12672AD1B00EBB543 /* FAvatarImageView.swift in Sources */,
 				539C0297267A69040028A381 /* FSecondaryTitleLabel.swift in Sources */,
 				539C0299267A6AF70028A381 /* FollowerFollowingLabel.swift in Sources */,
+				536C2272268D2EA700A66D3D /* FDataLoadingVC.swift in Sources */,
 				5393D58B2669931200EBB543 /* FollowingAndFollowerTabBarController.swift in Sources */,
 				539C02AD268A59590028A381 /* TweetCell.swift in Sources */,
+				536C2276268FA27800A66D3D /* MainUserVC.swift in Sources */,
 				53A46B6126683B7200B71CA9 /* Constants.swift in Sources */,
 				539C02A62683B52B0028A381 /* UserInfoVC.swift in Sources */,
 			);

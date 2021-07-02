@@ -8,13 +8,15 @@
 import UIKit
 
 class NetworkManager {
-    static let shared = NetworkManager()
-    var arrayOfFollowers: [FollowersData] = []
-    var arrayOfFollowing: [FollowingData] = []
+    static let shared                       = NetworkManager()
+    var arrayOfFollowers: [FollowersData]   = []
+    var arrayOfFollowing: [FollowingData]   = []
+    let cache                               = NSCache<NSString, UIImage>()
     
     
     private func getId(for username: String, completed: @escaping (Result<User,FError>) -> Void){
-        let endpoint = "https://api.twitter.com/2/users/by/username/" + username
+        let endpoint = "https://api.twitter.com/2/users/by/username/\(username)?user.fields=description,public_metrics"
+        
         
         guard let url = URL(string: endpoint) else {
             completed(.failure(.invalidHandle))
@@ -160,7 +162,7 @@ class NetworkManager {
     }
     
     func getTweets(of id: String, completed: @escaping (Result<Tweets, FError>)-> Void){
-        let endpoint = "https://api.twitter.com/2/users/\(id)/tweets?max_results=20"
+        let endpoint = "https://api.twitter.com/2/users/\(id)/tweets?max_results=30"
         
         guard let url = URL(string: endpoint) else {
             completed(.failure(.invalidHandle))
@@ -187,10 +189,15 @@ class NetworkManager {
         task.resume()
     }
     
-    //networkcall that call functions
     
     func downloadImage(from urlString: String, completed: @escaping(UIImage?) -> Void){
-        //cashe image goes here, if image is in  chache...blah blah
+        
+        let cacheKey = NSString(string: urlString)
+        
+        if let image = cache.object(forKey: cacheKey){
+            completed(image)
+            return
+        }
         
         let newURL = "\(urlString.dropLast(11)).jpg"
         guard let url = URL(string: newURL) else {
@@ -207,6 +214,8 @@ class NetworkManager {
                     completed(nil)
                     return
                 }
+            
+            self.cache.setObject(image, forKey:cacheKey)
             completed(image)
                   
         }

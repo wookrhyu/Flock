@@ -7,27 +7,32 @@
 
 import UIKit
 
-class UserInfoVC: UIViewController {
+class UserInfoVC: FDataLoadingVC {
     
     let headerView                      = UIView()
     let tweetTable                      = UITableView()
     var arrayOfTweets:[TweetsData]      = []
     
-    var FollowersData: FollowersData
+    var FollowingData: FollowingData?
+    var FollowersData: FollowersData?
     let padding: CGFloat = 5
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBlue
-        layoutBackViews()
-        addChildViews(FollowersData: FollowersData)
+        layoutBaseViews()
+        addChildViews(FollowersData: FollowersData!)
         configureTableView()
-        getTweets(id: FollowersData.id)
+        getTweets(id: FollowersData!.id)
     }
     
-    init(FollowersData: FollowersData) {
-        self.FollowersData = FollowersData
+    init(FollowersData: FollowersData?, FollowingData: FollowingData?) {
+        if FollowersData != nil {
+            self.FollowersData = FollowersData!
+        }else {
+            self.FollowingData = FollowingData!
+        }
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -35,7 +40,7 @@ class UserInfoVC: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func layoutBackViews() {
+    private func layoutBaseViews() {
         view.addSubview(headerView)
         
         headerView.translatesAutoresizingMaskIntoConstraints        = false
@@ -77,8 +82,11 @@ class UserInfoVC: UIViewController {
     }
     
     private func getTweets(id: String){
+        showLoadingView()
+        
         NetworkManager.shared.getTweets(of: id) {[weak self] result in
             guard let self = self else {return}
+            self.dismissLoadingView()
             
             switch result {
             case .success(let tweets):

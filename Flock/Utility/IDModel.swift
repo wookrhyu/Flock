@@ -12,6 +12,8 @@ struct User: Codable {
 }
 
 struct UserData: Codable {
+    let description: String
+    let public_metrics: Metrics
     let id: String
     let name: String
 }
@@ -29,8 +31,13 @@ struct FollowersData: Codable {
     let public_metrics: Metrics
 }
 
+//struct FollowersToken: Codable{
+//    let next_token: String
+//}
+
 struct Following: Codable {
     let data: [FollowingData]
+    //let meta: FollowingToken
 }
 
 struct FollowingData: Codable {
@@ -40,6 +47,10 @@ struct FollowingData: Codable {
     let description: String
     let username: String
     let public_metrics: Metrics
+}
+
+struct FollowingToken: Codable{
+    let next_token: String
 }
 
 struct Metrics: Codable{

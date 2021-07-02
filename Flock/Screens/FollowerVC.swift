@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FollowerVC: UIViewController{
+class FollowerVC: FDataLoadingVC{
     
     let tableView                               = UITableView()
     var followers: [FollowersData]              = []
@@ -51,8 +51,11 @@ class FollowerVC: UIViewController{
     }
     
     private func getFollowers(username: String){
+        showLoadingView()
         NetworkManager.shared.followersFromID(username: username) { [weak self] result in
             guard let self = self else { return }
+            self.dismissLoadingView()
+            
             switch result {
             case .success(let followers):
                 self.updateUI(with: followers)
@@ -96,7 +99,7 @@ extension FollowerVC: UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let destVC = UserInfoVC(FollowersData: followers[indexPath.row])
+        let destVC = UserInfoVC(FollowersData: followers[indexPath.row], FollowingData: nil)
         let navController   = UINavigationController(rootViewController: destVC)
         present(navController, animated: true)
     }

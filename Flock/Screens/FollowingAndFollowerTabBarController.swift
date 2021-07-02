@@ -50,6 +50,10 @@ class FollowingAndFollowerTabBarController: UITabBarController {
         return UINavigationController(rootViewController: followerNC)
     }
     
+//    private func creatFollowerNC() -> UINavigationController {
+//        let userNC                                      = UserInfoVC(
+//    }
+    
     private func configureTabBar() {
         tabBar.barTintColor                 = .systemGray
 //        tabBar.tintColor                    = .systemRed
