@@ -35,7 +35,7 @@ class FollowerAndFollowingCell: UITableViewCell {
 
         addSubview(containerView)
         containerView.translatesAutoresizingMaskIntoConstraints = false
-        containerView.backgroundColor                       = .systemGray4
+        containerView.backgroundColor                       = .systemGray6
         containerView.layer.cornerRadius                    = 3.0
         containerView.layer.shadowColor                     = UIColor.gray.cgColor
         containerView.layer.shadowOffset                    = CGSize(width: 0.0, height: 0.0)
@@ -94,7 +94,7 @@ class FollowerAndFollowingCell: UITableViewCell {
             
             followerCount.topAnchor.constraint(equalTo: usernameLabel.bottomAnchor, constant: 0),
             followerCount.leadingAnchor.constraint(equalTo: followerText.trailingAnchor, constant: 5),
-            followerCount.widthAnchor.constraint(equalToConstant: 30),
+            followerCount.widthAnchor.constraint(equalToConstant: 50),
             followerCount.heightAnchor.constraint(equalToConstant: 20),
 
             followingText.topAnchor.constraint(equalTo: usernameLabel.bottomAnchor, constant: 0),
@@ -104,7 +104,7 @@ class FollowerAndFollowingCell: UITableViewCell {
 
             followingCount.topAnchor.constraint(equalTo: usernameLabel.bottomAnchor, constant: 0),
             followingCount.leadingAnchor.constraint(equalTo: followingText.trailingAnchor, constant: 5),
-            followingCount.widthAnchor.constraint(equalToConstant: 30),
+            followingCount.widthAnchor.constraint(equalToConstant: 50),
             followingCount.heightAnchor.constraint(equalToConstant: 20),
         ])
     }

@@ -1,13 +1,13 @@
 //
-//  UserHeaderViewController.swift
+//  UserHeaderViewContollerFollowing.swift
 //  Flock
 //
-//  Created by Wook Rhyu on 6/24/21.
+//  Created by Wook Rhyu on 7/5/21.
 //
 
 import UIKit
 
-class UserHeaderViewController: UIViewController {
+class UserHeaderViewControllerFollowing: UIViewController {
     
     let avatarImageView         = FAvatarImageView(frame: .zero)
     let usernameLabel           = FTitleLabel(textAlignment: .left, fontSize: 30)
@@ -18,18 +18,18 @@ class UserHeaderViewController: UIViewController {
     let followerCount           = FTitleLabel(textAlignment: .left, fontSize: 16)
     let followingCount          = FTitleLabel(textAlignment: .left, fontSize: 16)
     
-    var FollowersData: FollowersData!
+    var FollowingData: FollowingData!
         
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setElementsToVariables(FollowersData: FollowersData)
+        setElementsToVariables(FollowingData: FollowingData)
         configureImageAndUserName()
         configureFollowersAndFollowing()
     }
      
-    init(FollwersData: FollowersData) {
-        self.FollowersData = FollwersData
+    init(FollowingData: FollowingData) {
+        self.FollowingData = FollowingData
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -37,15 +37,15 @@ class UserHeaderViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setElementsToVariables(FollowersData: FollowersData) {
+    private func setElementsToVariables(FollowingData: FollowingData) {
         
-        avatarImageView.downloadImage(fromURL: FollowersData.profile_image_url)
-        usernameLabel.text      = FollowersData.name
-        twitterhandle.text      = "@\(FollowersData.username)"
-        bio.text                = FollowersData.description
+        avatarImageView.downloadImage(fromURL: FollowingData.profile_image_url)
+        usernameLabel.text      = FollowingData.name
+        twitterhandle.text      = "@\(FollowingData.username)"
+        bio.text                = FollowingData.description
         bio.numberOfLines       = 4
-        followerCount.text      = String(FollowersData.public_metrics.followers_count)
-        followingCount.text     = String(FollowersData.public_metrics.following_count)
+        followerCount.text      = String(FollowingData.public_metrics.followers_count)
+        followingCount.text     = String(FollowingData.public_metrics.following_count)
         bio.textColor           = .black
         bio.backgroundColor     = .systemTeal
         
@@ -86,8 +86,8 @@ class UserHeaderViewController: UIViewController {
         
         followerText.text       = "followers"
         followingText.text      = "following"
-        followerCount.text      = String(FollowersData.public_metrics.followers_count)
-        followingCount.text     = String(FollowersData.public_metrics.following_count)
+        followerCount.text      = String(FollowingData.public_metrics.followers_count)
+        followingCount.text     = String(FollowingData.public_metrics.following_count)
         
         
         
@@ -117,7 +117,4 @@ class UserHeaderViewController: UIViewController {
         
         
     }
-    
-    
-
 }

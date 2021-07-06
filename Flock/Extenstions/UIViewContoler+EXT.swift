@@ -8,7 +8,6 @@
 import UIKit
 
 extension UIViewController {
-    
     func presentFAlertOnMainThread(title: String, message: String, buttonTitle: String, errorType: FError){
         DispatchQueue.main.async {
             let alertVC = FAlertVC(title: title, message: message, buttonTitle: buttonTitle, errorType: errorType)

@@ -8,7 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		536C2272268D2EA700A66D3D /* FDataLoadingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536C2271268D2EA700A66D3D /* FDataLoadingVC.swift */; };
-		536C2276268FA27800A66D3D /* MainUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536C2275268FA27800A66D3D /* MainUserVC.swift */; };
+		536C227B2693C7B500A66D3D /* UserInfoVCFollowing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536C227A2693C7B500A66D3D /* UserInfoVCFollowing.swift */; };
+		536C227D2693C88300A66D3D /* UserHeaderViewContollerFollowing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536C227C2693C88300A66D3D /* UserHeaderViewContollerFollowing.swift */; };
 		5393D5872669921100EBB543 /* FollowerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5393D5862669921100EBB543 /* FollowerVC.swift */; };
 		5393D5892669921C00EBB543 /* FollowingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5393D5882669921C00EBB543 /* FollowingVC.swift */; };
 		5393D58B2669931200EBB543 /* FollowingAndFollowerTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5393D58A2669931200EBB543 /* FollowingAndFollowerTabBarController.swift */; };
@@ -26,7 +27,7 @@
 		539C0299267A6AF70028A381 /* FollowerFollowingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539C0298267A6AF70028A381 /* FollowerFollowingLabel.swift */; };
 		539C029D267A974B0028A381 /* FollowerAndFollowingMetricsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539C029C267A974B0028A381 /* FollowerAndFollowingMetricsVC.swift */; };
 		539C029F26826BB30028A381 /* FollowersAndFollowingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539C029E26826BB30028A381 /* FollowersAndFollowingView.swift */; };
-		539C02A62683B52B0028A381 /* UserInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539C02A52683B52B0028A381 /* UserInfoVC.swift */; };
+		539C02A62683B52B0028A381 /* UserInfoVCFollowers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539C02A52683B52B0028A381 /* UserInfoVCFollowers.swift */; };
 		539C02A926852B1E0028A381 /* UserHeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539C02A826852B1E0028A381 /* UserHeaderViewController.swift */; };
 		539C02AD268A59590028A381 /* TweetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539C02AC268A59590028A381 /* TweetCell.swift */; };
 		53A46B402668046700B71CA9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53A46B3F2668046700B71CA9 /* AppDelegate.swift */; };
@@ -41,7 +42,8 @@
 
 /* Begin PBXFileReference section */
 		536C2271268D2EA700A66D3D /* FDataLoadingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDataLoadingVC.swift; sourceTree = "<group>"; };
-		536C2275268FA27800A66D3D /* MainUserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainUserVC.swift; sourceTree = "<group>"; };
+		536C227A2693C7B500A66D3D /* UserInfoVCFollowing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoVCFollowing.swift; sourceTree = "<group>"; };
+		536C227C2693C88300A66D3D /* UserHeaderViewContollerFollowing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHeaderViewContollerFollowing.swift; sourceTree = "<group>"; };
 		5393D5862669921100EBB543 /* FollowerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerVC.swift; sourceTree = "<group>"; };
 		5393D5882669921C00EBB543 /* FollowingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingVC.swift; sourceTree = "<group>"; };
 		5393D58A2669931200EBB543 /* FollowingAndFollowerTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingAndFollowerTabBarController.swift; sourceTree = "<group>"; };
@@ -59,7 +61,7 @@
 		539C0298267A6AF70028A381 /* FollowerFollowingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerFollowingLabel.swift; sourceTree = "<group>"; };
 		539C029C267A974B0028A381 /* FollowerAndFollowingMetricsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerAndFollowingMetricsVC.swift; sourceTree = "<group>"; };
 		539C029E26826BB30028A381 /* FollowersAndFollowingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersAndFollowingView.swift; sourceTree = "<group>"; };
-		539C02A52683B52B0028A381 /* UserInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoVC.swift; sourceTree = "<group>"; };
+		539C02A52683B52B0028A381 /* UserInfoVCFollowers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoVCFollowers.swift; sourceTree = "<group>"; };
 		539C02A826852B1E0028A381 /* UserHeaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHeaderViewController.swift; sourceTree = "<group>"; };
 		539C02AC268A59590028A381 /* TweetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetCell.swift; sourceTree = "<group>"; };
 		53A46B3C2668046700B71CA9 /* Flock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flock.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -85,6 +87,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		536C22792693C4E400A66D3D /* Extenstions */ = {
+			isa = PBXGroup;
+			children = (
+				5393D5952670119800EBB543 /* UIViewContoler+EXT.swift */,
+			);
+			path = Extenstions;
+			sourceTree = "<group>";
+		};
 		5393D59B2672738600EBB543 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
@@ -151,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				539C02A826852B1E0028A381 /* UserHeaderViewController.swift */,
+				536C227C2693C88300A66D3D /* UserHeaderViewContollerFollowing.swift */,
 				5393D593266FF65400EBB543 /* FAlertVC.swift */,
 				536C2271268D2EA700A66D3D /* FDataLoadingVC.swift */,
 			);
@@ -183,7 +194,7 @@
 				5393D59B2672738600EBB543 /* Managers */,
 				53A46B5F26683B6200B71CA9 /* Utility */,
 				53A46B5E2668391A00B71CA9 /* Support */,
-				5393D5952670119800EBB543 /* UIViewContoler+EXT.swift */,
+				536C22792693C4E400A66D3D /* Extenstions */,
 			);
 			path = Flock;
 			sourceTree = "<group>";
@@ -193,10 +204,10 @@
 			children = (
 				53A46B5726682FD000B71CA9 /* MainSearchScreenVC.swift */,
 				5393D58A2669931200EBB543 /* FollowingAndFollowerTabBarController.swift */,
-				5393D5882669921C00EBB543 /* FollowingVC.swift */,
 				5393D5862669921100EBB543 /* FollowerVC.swift */,
-				539C02A52683B52B0028A381 /* UserInfoVC.swift */,
-				536C2275268FA27800A66D3D /* MainUserVC.swift */,
+				5393D5882669921C00EBB543 /* FollowingVC.swift */,
+				539C02A52683B52B0028A381 /* UserInfoVCFollowers.swift */,
+				536C227A2693C7B500A66D3D /* UserInfoVCFollowing.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -313,10 +324,12 @@
 				539C029F26826BB30028A381 /* FollowersAndFollowingView.swift in Sources */,
 				5393D590266FF0F700EBB543 /* FBodyLabel.swift in Sources */,
 				53A46B5B2668316600B71CA9 /* FButton.swift in Sources */,
+				536C227B2693C7B500A66D3D /* UserInfoVCFollowing.swift in Sources */,
 				5393D59A2672733400EBB543 /* IDModel.swift in Sources */,
 				53A46B422668046700B71CA9 /* SceneDelegate.swift in Sources */,
 				539C029D267A974B0028A381 /* FollowerAndFollowingMetricsVC.swift in Sources */,
 				5393D5962670119800EBB543 /* UIViewContoler+EXT.swift in Sources */,
+				536C227D2693C88300A66D3D /* UserHeaderViewContollerFollowing.swift in Sources */,
 				539C02A926852B1E0028A381 /* UserHeaderViewController.swift in Sources */,
 				5393D594266FF65400EBB543 /* FAlertVC.swift in Sources */,
 				5393D5872669921100EBB543 /* FollowerVC.swift in Sources */,
@@ -329,9 +342,8 @@
 				536C2272268D2EA700A66D3D /* FDataLoadingVC.swift in Sources */,
 				5393D58B2669931200EBB543 /* FollowingAndFollowerTabBarController.swift in Sources */,
 				539C02AD268A59590028A381 /* TweetCell.swift in Sources */,
-				536C2276268FA27800A66D3D /* MainUserVC.swift in Sources */,
 				53A46B6126683B7200B71CA9 /* Constants.swift in Sources */,
-				539C02A62683B52B0028A381 /* UserInfoVC.swift in Sources */,
+				539C02A62683B52B0028A381 /* UserInfoVCFollowers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

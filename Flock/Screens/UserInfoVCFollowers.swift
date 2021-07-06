@@ -1,5 +1,5 @@
 //
-//  UserInfoVC.swift
+//  UserInfoVCFollowers.swift
 //  Flock
 //
 //  Created by Wook Rhyu on 6/23/21.
@@ -7,14 +7,13 @@
 
 import UIKit
 
-class UserInfoVC: FDataLoadingVC {
+class UserInfoVCFollowers: FDataLoadingVC {
     
     let headerView                      = UIView()
     let tweetTable                      = UITableView()
     var arrayOfTweets:[TweetsData]      = []
-    
-    var FollowingData: FollowingData?
-    var FollowersData: FollowersData?
+
+    var FollowersData: FollowersData!
     let padding: CGFloat = 5
     
     
@@ -27,12 +26,8 @@ class UserInfoVC: FDataLoadingVC {
         getTweets(id: FollowersData!.id)
     }
     
-    init(FollowersData: FollowersData?, FollowingData: FollowingData?) {
-        if FollowersData != nil {
-            self.FollowersData = FollowersData!
-        }else {
-            self.FollowingData = FollowingData!
-        }
+    init(FollowersData: FollowersData) {
+        self.FollowersData = FollowersData
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -103,7 +98,7 @@ class UserInfoVC: FDataLoadingVC {
     }
 }
 
-extension UserInfoVC: UITableViewDelegate, UITableViewDataSource{
+extension UserInfoVCFollowers: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TweetCell") as! TweetCell
         let tweet = arrayOfTweets[indexPath.row]
@@ -114,8 +109,6 @@ extension UserInfoVC: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return arrayOfTweets.count
     }
-
-
 
 }
 

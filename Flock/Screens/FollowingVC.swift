@@ -27,16 +27,27 @@ class FollowingVC: FDataLoadingVC {
         configureViewContoller()
         configureTableView()
         getFollowing(username: username)
+        configureNavigationBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: true)
-        navigationController?.navigationBar.prefersLargeTitles = true
+        //configureNavigationBar()
     }
     
     private func configureViewContoller() {
         view.backgroundColor                    = .systemBackground
+        title                                   = "Following"
+    }
+    
+    private func configureNavigationBar(){
+        let navbar                  = navigationController
+        navbar?.setNavigationBarHidden(false, animated: true)
+        navbar?.navigationItem.hidesBackButton = true
+        navbar?.navigationBar.topItem?.title = username
+        navbar?.navigationBar.prefersLargeTitles = true
+//        navbar?.navigationBar.layer.masksToBounds = true
+//        navbar?.navigationBar.layer.cornerRadius = 20
     }
     
     private func configureTableView() {
@@ -92,6 +103,12 @@ extension FollowingVC: UITableViewDataSource, UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return following.count
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let destVC = UserInfoVCFollowing(FollowingData: following[indexPath.row])
+        let navController   = UINavigationController(rootViewController: destVC)
+        present(navController, animated: true)
     }
     
 }

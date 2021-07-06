@@ -48,9 +48,12 @@ class MainSearchScreenVC: UIViewController {
             presentFAlertOnMainThread(title: "Hey!", message: "Seems like you have not entered in anything, Please type in a valid twitter handle", buttonTitle: "Ok", errorType: FError.invalidHandle)
             return
         }
-        
         twitterHandleTextField.resignFirstResponder()
-        let followingAndFollowerTabBarContoller = FollowingAndFollowerTabBarController(username: twitterHandleTextField.text!)
+        
+        let followingAndFollowerTabBarContoller = FollowingAndFollowerTabBarController()
+        let followingVC                         = UINavigationController(rootViewController: FollowingVC(for: twitterHandleTextField.text!))
+        let followerVC                          = FollowerVC(for: twitterHandleTextField.text!)
+        followingAndFollowerTabBarContoller.setViewControllers([followerVC, followingVC], animated: false)
         self.navigationController?.pushViewController(followingAndFollowerTabBarContoller, animated: true)
     }
     
