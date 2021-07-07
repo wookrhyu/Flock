@@ -16,6 +16,7 @@ class FollowingVC: FDataLoadingVC {
     init(for username: String) {
         super.init(nibName: nil, bundle: nil)
         self.username = username
+        title                                   = "Following"
     }
     
     required init?(coder: NSCoder) {
@@ -24,20 +25,18 @@ class FollowingVC: FDataLoadingVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureViewContoller()
         configureTableView()
         getFollowing(username: username)
-        configureNavigationBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        //configureNavigationBar()
+        configureNavigationBar()
+        configureViewContoller()
     }
     
     private func configureViewContoller() {
         view.backgroundColor                    = .systemBackground
-        title                                   = "Following"
     }
     
     private func configureNavigationBar(){

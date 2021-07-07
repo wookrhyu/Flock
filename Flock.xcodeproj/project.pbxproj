@@ -10,6 +10,8 @@
 		536C2272268D2EA700A66D3D /* FDataLoadingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536C2271268D2EA700A66D3D /* FDataLoadingVC.swift */; };
 		536C227B2693C7B500A66D3D /* UserInfoVCFollowing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536C227A2693C7B500A66D3D /* UserInfoVCFollowing.swift */; };
 		536C227D2693C88300A66D3D /* UserHeaderViewContollerFollowing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536C227C2693C88300A66D3D /* UserHeaderViewContollerFollowing.swift */; };
+		536C22812695123100A66D3D /* UserInfoVCUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536C22802695123100A66D3D /* UserInfoVCUser.swift */; };
+		536C2283269521C500A66D3D /* UserHeaderViewControllerUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536C2282269521C500A66D3D /* UserHeaderViewControllerUser.swift */; };
 		5393D5872669921100EBB543 /* FollowerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5393D5862669921100EBB543 /* FollowerVC.swift */; };
 		5393D5892669921C00EBB543 /* FollowingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5393D5882669921C00EBB543 /* FollowingVC.swift */; };
 		5393D58B2669931200EBB543 /* FollowingAndFollowerTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5393D58A2669931200EBB543 /* FollowingAndFollowerTabBarController.swift */; };
@@ -44,6 +46,8 @@
 		536C2271268D2EA700A66D3D /* FDataLoadingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDataLoadingVC.swift; sourceTree = "<group>"; };
 		536C227A2693C7B500A66D3D /* UserInfoVCFollowing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoVCFollowing.swift; sourceTree = "<group>"; };
 		536C227C2693C88300A66D3D /* UserHeaderViewContollerFollowing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHeaderViewContollerFollowing.swift; sourceTree = "<group>"; };
+		536C22802695123100A66D3D /* UserInfoVCUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoVCUser.swift; sourceTree = "<group>"; };
+		536C2282269521C500A66D3D /* UserHeaderViewControllerUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHeaderViewControllerUser.swift; sourceTree = "<group>"; };
 		5393D5862669921100EBB543 /* FollowerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerVC.swift; sourceTree = "<group>"; };
 		5393D5882669921C00EBB543 /* FollowingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingVC.swift; sourceTree = "<group>"; };
 		5393D58A2669931200EBB543 /* FollowingAndFollowerTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingAndFollowerTabBarController.swift; sourceTree = "<group>"; };
@@ -93,6 +97,26 @@
 				5393D5952670119800EBB543 /* UIViewContoler+EXT.swift */,
 			);
 			path = Extenstions;
+			sourceTree = "<group>";
+		};
+		536C227E269511AA00A66D3D /* UserInfoVC */ = {
+			isa = PBXGroup;
+			children = (
+				539C02A52683B52B0028A381 /* UserInfoVCFollowers.swift */,
+				536C227A2693C7B500A66D3D /* UserInfoVCFollowing.swift */,
+				536C22802695123100A66D3D /* UserInfoVCUser.swift */,
+			);
+			path = UserInfoVC;
+			sourceTree = "<group>";
+		};
+		536C227F269511C000A66D3D /* UserHeader */ = {
+			isa = PBXGroup;
+			children = (
+				539C02A826852B1E0028A381 /* UserHeaderViewController.swift */,
+				536C227C2693C88300A66D3D /* UserHeaderViewContollerFollowing.swift */,
+				536C2282269521C500A66D3D /* UserHeaderViewControllerUser.swift */,
+			);
+			path = UserHeader;
 			sourceTree = "<group>";
 		};
 		5393D59B2672738600EBB543 /* Managers */ = {
@@ -160,8 +184,7 @@
 		539C02AF268CDB250028A381 /* ViewContollers */ = {
 			isa = PBXGroup;
 			children = (
-				539C02A826852B1E0028A381 /* UserHeaderViewController.swift */,
-				536C227C2693C88300A66D3D /* UserHeaderViewContollerFollowing.swift */,
+				536C227F269511C000A66D3D /* UserHeader */,
 				5393D593266FF65400EBB543 /* FAlertVC.swift */,
 				536C2271268D2EA700A66D3D /* FDataLoadingVC.swift */,
 			);
@@ -206,8 +229,7 @@
 				5393D58A2669931200EBB543 /* FollowingAndFollowerTabBarController.swift */,
 				5393D5862669921100EBB543 /* FollowerVC.swift */,
 				5393D5882669921C00EBB543 /* FollowingVC.swift */,
-				539C02A52683B52B0028A381 /* UserInfoVCFollowers.swift */,
-				536C227A2693C7B500A66D3D /* UserInfoVCFollowing.swift */,
+				536C227E269511AA00A66D3D /* UserInfoVC */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -328,6 +350,8 @@
 				5393D59A2672733400EBB543 /* IDModel.swift in Sources */,
 				53A46B422668046700B71CA9 /* SceneDelegate.swift in Sources */,
 				539C029D267A974B0028A381 /* FollowerAndFollowingMetricsVC.swift in Sources */,
+				536C22812695123100A66D3D /* UserInfoVCUser.swift in Sources */,
+				536C2283269521C500A66D3D /* UserHeaderViewControllerUser.swift in Sources */,
 				5393D5962670119800EBB543 /* UIViewContoler+EXT.swift in Sources */,
 				536C227D2693C88300A66D3D /* UserHeaderViewContollerFollowing.swift in Sources */,
 				539C02A926852B1E0028A381 /* UserHeaderViewController.swift in Sources */,

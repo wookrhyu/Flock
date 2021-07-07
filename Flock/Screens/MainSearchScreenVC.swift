@@ -51,10 +51,10 @@ class MainSearchScreenVC: UIViewController {
         twitterHandleTextField.resignFirstResponder()
         
         let followingAndFollowerTabBarContoller = FollowingAndFollowerTabBarController()
-        let followingVC                         = UINavigationController(rootViewController: FollowingVC(for: twitterHandleTextField.text!))
+        let followingVC                         = FollowingVC(for: twitterHandleTextField.text!)
         let followerVC                          = FollowerVC(for: twitterHandleTextField.text!)
         followingAndFollowerTabBarContoller.setViewControllers([followerVC, followingVC], animated: false)
-        self.navigationController?.pushViewController(followingAndFollowerTabBarContoller, animated: true)
+        navigationController?.pushViewController(followingAndFollowerTabBarContoller, animated: true)
     }
     
     private func configureLogoImageView() {

@@ -9,8 +9,10 @@ import UIKit
 
 class NetworkManager {
     static let shared                       = NetworkManager()
+    var userInfo: User
     var arrayOfFollowers: [FollowersData]   = []
     var arrayOfFollowing: [FollowingData]   = []
+    var arrayOfTweets: [TweetsData]         = []
     let cache                               = NSCache<NSString, UIImage>()
     
     
@@ -155,6 +157,29 @@ class NetworkManager {
                     
                 }
                 
+            case .failure(_):
+                completed(.failure(.networkError))
+            }
+        }
+    }
+    
+    func getTweetsFromID(username: String, completed: @escaping(Result<[Tweets], FError>)->Void){
+        getId(for: username) { result in
+            switch result {
+            
+            case .success(let user):
+                self.userInfo = user
+                self.getTweets(of: self.userInfo.data.id) { result in
+                    switch result {
+                    
+                    case .success(let tweets):
+                        for tweet in tweets.data{
+                            self.arrayOfTweets.append(tweet)
+                        }
+                    case .failure(_):
+                        completed(.failure(.networkError))
+                    }
+                }
             case .failure(_):
                 completed(.failure(.networkError))
             }

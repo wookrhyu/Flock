@@ -32,7 +32,7 @@ class FollowingAndFollowerTabBarController: UITabBarController {
     
     private func configureTabBar() {
         tabBar.barTintColor                 = .systemBackground
-//        tabBar.alpha                        = 0.7
+        tabBar.alpha                        = 0.98
 //        tabBar.tintColor                    = .systemRed
 //        tabBar.unselectedItemTintColor      = .systemGreen
         tabBar.layer.cornerRadius           = 5
@@ -44,7 +44,7 @@ class FollowingAndFollowerTabBarController: UITabBarController {
     class CustomTabBar: UITabBar {
             override func sizeThatFits(_ size: CGSize) -> CGSize {
                 var sizeThatFits = super.sizeThatFits(size)
-                sizeThatFits.height = 65
+                sizeThatFits.height = 70
                 return sizeThatFits
             }
         }

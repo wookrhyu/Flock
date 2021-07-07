@@ -64,6 +64,7 @@ class FollowerVC: FDataLoadingVC{
     
     private func getFollowers(username: String){
         showLoadingView()
+        
         NetworkManager.shared.followersFromID(username: username) { [weak self] result in
             guard let self = self else { return }
             self.dismissLoadingView()
