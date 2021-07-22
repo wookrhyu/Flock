@@ -1,5 +1,5 @@
 //
-//  UserInfoVCFollowing.swift
+//  FollowingUserInfoVC.swift
 //  Flock
 //
 //  Created by Wook Rhyu on 7/5/21.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class UserInfoVCFollowing: FDataLoadingVC {
+class FollowingUserInfoVC: FDataLoadingVC {
     
     let headerView                      = UIView()
     let tweetTable                      = UITableView()
@@ -19,7 +19,7 @@ class UserInfoVCFollowing: FDataLoadingVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBlue
+        view.backgroundColor = .systemBackground
         layoutBaseViews()
         addChildViews(FollowingData: FollowingData!)
         configureTableView()
@@ -39,7 +39,8 @@ class UserInfoVCFollowing: FDataLoadingVC {
         view.addSubview(headerView)
         
         headerView.translatesAutoresizingMaskIntoConstraints        = false
-        headerView.backgroundColor      = .systemPink
+        headerView.backgroundColor      = .systemBackground
+        headerView.dropShadow()
         
         NSLayoutConstraint.activate([
             headerView.topAnchor.constraint(equalTo: view.topAnchor, constant: 60),
@@ -98,7 +99,7 @@ class UserInfoVCFollowing: FDataLoadingVC {
     }
 }
 
-extension UserInfoVCFollowing: UITableViewDelegate, UITableViewDataSource{
+extension FollowingUserInfoVC: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TweetCell") as! TweetCell
         let tweet = arrayOfTweets[indexPath.row]

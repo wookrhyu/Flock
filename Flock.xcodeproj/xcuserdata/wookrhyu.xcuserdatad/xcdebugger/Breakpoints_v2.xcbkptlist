@@ -3,4 +3,54 @@
    uuid = "890B496B-915D-4C55-8A8F-4DF05C5F4981"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2F0742F8-DA2A-417E-AD96-3F1B77DF5F93"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Flock/Custom Views/Cells/FollowerAndFollowingCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "FollowerAndFollowingCell"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "2F0742F8-DA2A-417E-AD96-3F1B77DF5F93 - 77a2a7e2939ea344"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Flock.FollowerAndFollowingCell.__allocating_init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;Flock.FollowerAndFollowingCell&gt;"
+                  moduleName = "Flock"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/wookrhyu/Desktop/Wooks%20Coding%20Stuff/Flock/Flock/Custom%20Views/Cells/FollowerAndFollowingCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  uuid = "2F0742F8-DA2A-417E-AD96-3F1B77DF5F93 - 8dff57a13c80cbf4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Flock.FollowerAndFollowingCell.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;Flock.FollowerAndFollowingCell&gt;"
+                  moduleName = "Flock"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/wookrhyu/Desktop/Wooks%20Coding%20Stuff/Flock/Flock/Custom%20Views/Cells/FollowerAndFollowingCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "160">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

@@ -10,20 +10,20 @@ import UIKit
 class UserHeaderViewControllerUser: UIViewController {
     
     let avatarImageView         = FAvatarImageView(frame: .zero)
-    let usernameLabel           = FTitleLabel(textAlignment: .left, fontSize: 30)
+    let usernameLabel           = FTitleLabel(textAlignment: .left, fontSize: 30, weight: .bold)
     let twitterhandle           = FSecondaryTitleLabel(textAlignment: .left, fontSize: 17)
     let bio                     = FBodyLabel(textAlignment: .center)
-    let followerText            = FTitleLabel(textAlignment: .left, fontSize: 18)
-    let followingText           = FTitleLabel(textAlignment: .left, fontSize: 18)
-    let followerCount           = FTitleLabel(textAlignment: .left, fontSize: 16)
-    let followingCount          = FTitleLabel(textAlignment: .left, fontSize: 16)
+    let followerText            = FTitleLabel(textAlignment: .left, fontSize: 18, weight: .semibold)
+    let followingText           = FTitleLabel(textAlignment: .left, fontSize: 18, weight: .semibold)
+    let followerCount           = FTitleLabel(textAlignment: .left, fontSize: 16, weight: .semibold)
+    let followingCount          = FTitleLabel(textAlignment: .left, fontSize: 16, weight: .semibold)
     
     var UserData: User!
         
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setElementsToVariables(UserData: User)
+        setElementsToVariables(UserData: UserData)
         configureImageAndUserName()
         configureFollowersAndFollowing()
     }
@@ -39,15 +39,16 @@ class UserHeaderViewControllerUser: UIViewController {
     
     private func setElementsToVariables(UserData: User) {
         
-        //avatarImageView.downloadImage(fromURL: FollowingData.profile_image_url)
+        avatarImageView.downloadImage(fromURL: UserData.data.profile_image_url)
         usernameLabel.text      = UserData.data.name
         twitterhandle.text      = "@\(UserData.data.name)"
         bio.text                = UserData.data.description
         bio.numberOfLines       = 4
         followerCount.text      = String(UserData.data.public_metrics.followers_count)
         followingCount.text     = String(UserData.data.public_metrics.following_count)
+        bio.backgroundColor     = .systemBackground
         bio.textColor           = .black
-        bio.backgroundColor     = .systemTeal
+        bio.dropShadow()
         
     }
     
@@ -56,6 +57,8 @@ class UserHeaderViewControllerUser: UIViewController {
         view.addSubview(usernameLabel)
         view.addSubview(twitterhandle)
         view.addSubview(bio)
+        
+        avatarImageView.dropShadow()
         
         NSLayoutConstraint.activate([
             avatarImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 5),
@@ -86,8 +89,8 @@ class UserHeaderViewControllerUser: UIViewController {
         
         followerText.text       = "followers"
         followingText.text      = "following"
-        followerCount.text      = String(FollowingData.public_metrics.followers_count)
-        followingCount.text     = String(FollowingData.public_metrics.following_count)
+        followerCount.text      = String(UserData.data.public_metrics.followers_count)
+        followingCount.text     = String(UserData.data.public_metrics.following_count)
         
         
         

@@ -20,13 +20,13 @@ class FTextField: UITextField {
     
     private func configure() {
         translatesAutoresizingMaskIntoConstraints = false
-        layer.cornerRadius          = 5
-        layer.borderWidth           = 2
-        layer.borderColor           = UIColor.systemGray4.cgColor
+        layer.cornerRadius          = 20
+        layer.borderWidth           = 0
+        layer.borderColor           = CGColor.init(red: 0/255, green: 0/255, blue: 0/255, alpha: 1.0)
         
         textColor                   = .label
         tintColor                   = .label
-        textAlignment               = .center
+        textAlignment               = .left
         font                        = UIFont.preferredFont(forTextStyle: .title2)
         adjustsFontSizeToFitWidth   = true
         minimumFontSize             = 12
@@ -35,7 +35,7 @@ class FTextField: UITextField {
         autocorrectionType          = .no
         returnKeyType               = .go
         clearButtonMode             = .whileEditing
-        placeholder                 = "twitterhandle"
+        placeholder                 = "@twitterhandle"
         
     }
 }

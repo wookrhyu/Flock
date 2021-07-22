@@ -9,15 +9,14 @@ import UIKit
 
 class NetworkManager {
     static let shared                       = NetworkManager()
-    var userInfo: User
     var arrayOfFollowers: [FollowersData]   = []
     var arrayOfFollowing: [FollowingData]   = []
     var arrayOfTweets: [TweetsData]         = []
     let cache                               = NSCache<NSString, UIImage>()
     
     
-    private func getId(for username: String, completed: @escaping (Result<User,FError>) -> Void){
-        let endpoint = "https://api.twitter.com/2/users/by/username/\(username)?user.fields=description,public_metrics"
+    func getUserInfo(for username: String, completed: @escaping (Result<User,FError>) -> Void){
+        let endpoint = "https://api.twitter.com/2/users/by/username/\(username)?user.fields=description,public_metrics,profile_image_url"
         
         
         guard let url = URL(string: endpoint) else {
@@ -36,8 +35,8 @@ class NetworkManager {
             
             if let data = data{
                 do {
-                    let userID = try JSONDecoder().decode(User.self, from: data)//data and data?
-                    completed(.success(userID))
+                    let userInfo = try JSONDecoder().decode(User.self, from: data)
+                    completed(.success(userInfo))
                 } catch {
                     completed(.failure(.networkError))
                 }
@@ -114,7 +113,7 @@ class NetworkManager {
     }
     
     func followersFromID(username: String, completed: @escaping (Result<[FollowersData], FError>) -> Void){
-        getId(for: username) { result in
+        getUserInfo(for: username) { result in
             switch result {
             case .success(let users):
                 let userID = Int(users.data.id)
@@ -139,7 +138,8 @@ class NetworkManager {
     }
     
     func followingFromID(username: String, completed: @escaping (Result<[FollowingData], FError>) -> Void){
-        getId(for: username) { result in
+        getUserInfo(for: username) { result in
+            
             switch result {
             case .success(let users):
                 let userID = Int(users.data.id)
@@ -156,35 +156,37 @@ class NetworkManager {
                     }
                     
                 }
-                
             case .failure(_):
                 completed(.failure(.networkError))
             }
+            
         }
     }
     
-    func getTweetsFromID(username: String, completed: @escaping(Result<[Tweets], FError>)->Void){
-        getId(for: username) { result in
-            switch result {
-            
-            case .success(let user):
-                self.userInfo = user
-                self.getTweets(of: self.userInfo.data.id) { result in
-                    switch result {
-                    
-                    case .success(let tweets):
-                        for tweet in tweets.data{
-                            self.arrayOfTweets.append(tweet)
-                        }
-                    case .failure(_):
-                        completed(.failure(.networkError))
-                    }
-                }
-            case .failure(_):
-                completed(.failure(.networkError))
-            }
-        }
-    }
+//    func getUserInfoFromID(username: String, completed: @escaping(Result<[Tweets], FError>)->Void){
+//        getId(for: username) { result in
+//
+//            switch result {
+//            case .success(let user):
+//                self.userInfo = user //puts userInfo in so that it could be used in the VC
+//                self.getTweets(of: self.userInfo.data.id) { result in
+//
+//                    switch result {
+//                    case .success(let tweets):
+//                        for tweet in tweets.data{
+//                            self.arrayOfTweets.append(tweet)
+//                        }
+//                    case .failure(_):
+//                        completed(.failure(.networkError))
+//                    }
+//
+//                }
+//            case .failure(_):
+//                completed(.failure(.networkError))
+//            }
+//
+//        }
+//    }
     
     func getTweets(of id: String, completed: @escaping (Result<Tweets, FError>)-> Void){
         let endpoint = "https://api.twitter.com/2/users/\(id)/tweets?max_results=30"

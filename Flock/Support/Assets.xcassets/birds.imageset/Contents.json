@@ -1,16 +1,17 @@
 {
   "images" : [
     {
+      "filename" : "2021 Twitter logo - blue@1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "gh-logo@2x.png",
+      "filename" : "2021 Twitter logo - blue@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "gh-logo@3x.png",
+      "filename" : "2021 Twitter logo - blue@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

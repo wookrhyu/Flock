@@ -12,16 +12,16 @@ class FollowerAndFollowingCell: UITableViewCell {
     static let reuseID          = "FAFcell"
     let containerView           = UIView()
     let avatarImageView         = FAvatarImageView(frame: .zero)
-    let usernameLabel           = FTitleLabel(textAlignment: .left, fontSize: 20)
-    let twitterhandle           = FSecondaryTitleLabel(textAlignment: .left, fontSize: 16)
-    let followerText            = FTitleLabel(textAlignment: .left, fontSize: 16)
-    let followingText           = FTitleLabel(textAlignment: .left, fontSize: 16)
-    let followerCount           = FTitleLabel(textAlignment: .left, fontSize: 16)
-    let followingCount          = FTitleLabel(textAlignment: .left, fontSize: 16)
+    let usernameLabel           = FTitleLabel(textAlignment: .left, fontSize: 20, weight: .bold)
+    let followerText            = FTitleLabel(textAlignment: .left, fontSize: 16, weight: .semibold)
+    let followingText           = FTitleLabel(textAlignment: .left, fontSize: 16, weight: .semibold)
+    let followerCount           = FTitleLabel(textAlignment: .left, fontSize: 16, weight: .semibold)
+    let followingCount          = FTitleLabel(textAlignment: .left, fontSize: 16, weight: .semibold)
     
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        backgroundColor             = .systemBackground
         configureContainerView()
         configureImageUsernameHandle()
         configureFollowerAndFollowing()
@@ -35,20 +35,15 @@ class FollowerAndFollowingCell: UITableViewCell {
 
         addSubview(containerView)
         containerView.translatesAutoresizingMaskIntoConstraints = false
-        containerView.backgroundColor                       = .systemGray6
+        containerView.backgroundColor                       = .white
         containerView.layer.cornerRadius                    = 3.0
-        containerView.layer.shadowColor                     = UIColor.gray.cgColor
-        containerView.layer.shadowOffset                    = CGSize(width: 0.0, height: 0.0)
-        containerView.layer.shadowRadius                    = 5
-        containerView.layer.shadowOpacity                   = 0.3
-        containerView.layer.masksToBounds                   = false
-        containerView.clipsToBounds                         = false
+        containerView.dropShadow()
         
         NSLayoutConstraint.activate([
               containerView.centerYAnchor.constraint(equalTo: centerYAnchor),
               containerView.centerXAnchor.constraint(equalTo: centerXAnchor),
-              containerView.heightAnchor.constraint(equalToConstant: 70),
-              containerView.widthAnchor.constraint(equalToConstant: 375),
+              containerView.heightAnchor.constraint(equalToConstant: 72),
+              containerView.widthAnchor.constraint(equalToConstant: 377),
         ])
 
     }
@@ -56,8 +51,6 @@ class FollowerAndFollowingCell: UITableViewCell {
     private func configureImageUsernameHandle() {
         addSubview(avatarImageView)
         addSubview(usernameLabel)
-        addSubview(twitterhandle)
-        
         
         NSLayoutConstraint.activate([
             avatarImageView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
@@ -66,13 +59,8 @@ class FollowerAndFollowingCell: UITableViewCell {
             avatarImageView.widthAnchor.constraint(equalToConstant: 60),
             
             usernameLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 0),
-            usernameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 5),
+            usernameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 12),
             usernameLabel.heightAnchor.constraint(equalToConstant: 40),
-            
-            twitterhandle.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 0),
-            twitterhandle.leadingAnchor.constraint(equalTo: usernameLabel.trailingAnchor, constant: 3),
-            twitterhandle.widthAnchor.constraint(equalToConstant: 100),
-            twitterhandle.heightAnchor.constraint(equalToConstant: 40),
         ])
         
     }
@@ -88,7 +76,7 @@ class FollowerAndFollowingCell: UITableViewCell {
         
         NSLayoutConstraint.activate([
             followerText.topAnchor.constraint(equalTo: usernameLabel.bottomAnchor, constant: 0),
-            followerText.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 20),
+            followerText.leadingAnchor.constraint(equalTo: usernameLabel.leadingAnchor, constant: 2),
             followerText.widthAnchor.constraint(equalToConstant: 75),
             followerText.heightAnchor.constraint(equalToConstant: 20),
             
@@ -98,7 +86,7 @@ class FollowerAndFollowingCell: UITableViewCell {
             followerCount.heightAnchor.constraint(equalToConstant: 20),
 
             followingText.topAnchor.constraint(equalTo: usernameLabel.bottomAnchor, constant: 0),
-            followingText.leadingAnchor.constraint(equalTo: followerCount.trailingAnchor, constant: 20),
+            followingText.leadingAnchor.constraint(equalTo: followerCount.trailingAnchor, constant: 10),
             followingText.widthAnchor.constraint(equalToConstant: 75),
             followingText.heightAnchor.constraint(equalToConstant: 20),
 
@@ -112,7 +100,6 @@ class FollowerAndFollowingCell: UITableViewCell {
     func setFollower(follower: FollowersData) {
         avatarImageView.downloadImage(fromURL: follower.profile_image_url)
         usernameLabel.text = follower.name
-        twitterhandle.text = "@\(follower.username)"
         followerCount.text = String(follower.public_metrics.followers_count)
         followingCount.text = String(follower.public_metrics.following_count)
     }
@@ -120,7 +107,6 @@ class FollowerAndFollowingCell: UITableViewCell {
     func setFollowing(following: FollowingData) {
         avatarImageView.downloadImage(fromURL: following.profile_image_url)
         usernameLabel.text = following.name
-        twitterhandle.text = "@\(following.username)"
         followerCount.text = String(following.public_metrics.followers_count)
         followingCount.text = String(following.public_metrics.following_count)
         

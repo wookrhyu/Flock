@@ -25,7 +25,7 @@ class FButton: UIButton {
     }
     
     private func configure() {
-        layer.cornerRadius                          = 5
+        layer.cornerRadius                          = 20
         titleLabel?.font                            = UIFont.preferredFont(forTextStyle: .headline)
         setTitleColor(.white, for: .normal)
         translatesAutoresizingMaskIntoConstraints   = false

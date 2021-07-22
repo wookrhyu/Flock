@@ -10,19 +10,20 @@ import UIKit
 class UserHeaderViewController: UIViewController {
     
     let avatarImageView         = FAvatarImageView(frame: .zero)
-    let usernameLabel           = FTitleLabel(textAlignment: .left, fontSize: 30)
+    let usernameLabel           = FTitleLabel(textAlignment: .left, fontSize: 30, weight: .bold)
     let twitterhandle           = FSecondaryTitleLabel(textAlignment: .left, fontSize: 17)
     let bio                     = FBodyLabel(textAlignment: .center)
-    let followerText            = FTitleLabel(textAlignment: .left, fontSize: 18)
-    let followingText           = FTitleLabel(textAlignment: .left, fontSize: 18)
-    let followerCount           = FTitleLabel(textAlignment: .left, fontSize: 16)
-    let followingCount          = FTitleLabel(textAlignment: .left, fontSize: 16)
+    let followerText            = FTitleLabel(textAlignment: .left, fontSize: 18, weight: .semibold)
+    let followingText           = FTitleLabel(textAlignment: .left, fontSize: 18, weight: .semibold)
+    let followerCount           = FTitleLabel(textAlignment: .left, fontSize: 16, weight: .semibold)
+    let followingCount          = FTitleLabel(textAlignment: .left, fontSize: 16, weight: .semibold)
     
     var FollowersData: FollowersData!
         
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor    = .systemBackground
         setElementsToVariables(FollowersData: FollowersData)
         configureImageAndUserName()
         configureFollowersAndFollowing()
@@ -46,8 +47,9 @@ class UserHeaderViewController: UIViewController {
         bio.numberOfLines       = 4
         followerCount.text      = String(FollowersData.public_metrics.followers_count)
         followingCount.text     = String(FollowersData.public_metrics.following_count)
+        bio.backgroundColor     = .systemBackground
         bio.textColor           = .black
-        bio.backgroundColor     = .systemTeal
+        bio.dropShadow()
         
     }
     
@@ -56,6 +58,8 @@ class UserHeaderViewController: UIViewController {
         view.addSubview(usernameLabel)
         view.addSubview(twitterhandle)
         view.addSubview(bio)
+        
+        avatarImageView.dropShadow()
         
         NSLayoutConstraint.activate([
             avatarImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 5),

@@ -13,6 +13,8 @@ struct User: Codable {
 
 struct UserData: Codable {
     let description: String
+    let username: String
+    let profile_image_url: String
     let public_metrics: Metrics
     let id: String
     let name: String

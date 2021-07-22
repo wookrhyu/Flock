@@ -1,45 +1,77 @@
 //
-//  UserInfoVCFollowers.swift
+//  UserVC.swift
 //  Flock
 //
-//  Created by Wook Rhyu on 6/23/21.
+//  Created by Wook Rhyu on 7/6/21.
 //
 
 import UIKit
 
-class UserInfoVCFollowers: FDataLoadingVC {
+class UserVC: FDataLoadingVC {
     
     let headerView                      = UIView()
     let tweetTable                      = UITableView()
     var arrayOfTweets:[TweetsData]      = []
 
-    var FollowersData: FollowersData!
+    var username: String
+    var userInfo: User!
     let padding: CGFloat = 5
     
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .systemBlue
-        layoutBaseViews()
-        addChildViews(FollowersData: FollowersData!)
-        configureTableView()
-        getTweets(id: FollowersData!.id)
-    }
-    
-    init(FollowersData: FollowersData) {
-        self.FollowersData = FollowersData
+    init(for username: String) {
+        self.username = username
         super.init(nibName: nil, bundle: nil)
+        title                               = "Me"
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .systemBackground
+        getUserInfo(for: username)
+        layoutBaseViews()
+        configureTableView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        configureNavigationBar()
+    }
+    
+    private func configureNavigationBar() {
+        let navbar                  = navigationController
+        navbar?.setNavigationBarHidden(true, animated: false)
+ 
+    }
+    
+    private func getUserInfo(for username: String){
+        NetworkManager.shared.getUserInfo(for: username) {[weak self] result in
+            guard let self = self else { return }
+            switch result {
+            
+            case .success(let user):
+                self.userInfo = user
+            case .failure(let error):
+                self.presentFAlertOnMainThread(title: "There was a problem", message: error.rawValue, buttonTitle: "Ok", errorType: .networkError)
+            }
+            
+            DispatchQueue.main.async {
+                self.addChildViews(UserData: self.userInfo)
+                self.getTweets(id: self.userInfo.data.id)
+            }
+        }
+        
+    }
+    
     private func layoutBaseViews() {
         view.addSubview(headerView)
         
         headerView.translatesAutoresizingMaskIntoConstraints        = false
-        headerView.backgroundColor      = .systemPink
+        headerView.backgroundColor      = .systemBackground
+        headerView.dropShadow()
         
         NSLayoutConstraint.activate([
             headerView.topAnchor.constraint(equalTo: view.topAnchor, constant: 60),
@@ -49,8 +81,8 @@ class UserInfoVCFollowers: FDataLoadingVC {
         ])
     }
     
-    private func addChildViews(FollowersData: FollowersData){
-        self.add(childVC: UserHeaderViewController(FollwersData: FollowersData), to: self.headerView)
+    private func addChildViews(UserData: User){
+        self.add(childVC: UserHeaderViewControllerUser(UserData: UserData), to: self.headerView)
     }
     
     func add(childVC: UIViewController, to containerView: UIView){
@@ -98,7 +130,7 @@ class UserInfoVCFollowers: FDataLoadingVC {
     }
 }
 
-extension UserInfoVCFollowers: UITableViewDelegate, UITableViewDataSource{
+extension UserVC: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TweetCell") as! TweetCell
         let tweet = arrayOfTweets[indexPath.row]

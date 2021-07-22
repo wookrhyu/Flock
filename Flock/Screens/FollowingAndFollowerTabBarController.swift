@@ -31,14 +31,21 @@ class FollowingAndFollowerTabBarController: UITabBarController {
     }
     
     private func configureTabBar() {
+        let tabColor: UIColor               = .black
+        
         tabBar.barTintColor                 = .systemBackground
         tabBar.alpha                        = 0.98
-//        tabBar.tintColor                    = .systemRed
-//        tabBar.unselectedItemTintColor      = .systemGreen
-        tabBar.layer.cornerRadius           = 5
+        tabBar.tintColor                    = tabColor
+        tabBar.unselectedItemTintColor      = tabColor
+        tabBar.layer.cornerRadius           = 10
         tabBar.layer.maskedCorners          = [ .layerMinXMinYCorner, .layerMaxXMinYCorner]
         tabBar.layer.masksToBounds          = true
         tabBar.itemPositioning              = .fill
+        
+        let fontAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0, weight: .semibold)]
+        UITabBarItem.appearance().setTitleTextAttributes(fontAttributes, for: .normal)
+
+        tabBar.selectionIndicatorImage = UIImage().createSelectionIndicator(color: tabColor, size: CGSize(width: tabBar.frame.width/CGFloat(tabBar.items!.count), height: tabBar.frame.height), lineWidth: 3.0)
     }
     
     class CustomTabBar: UITabBar {

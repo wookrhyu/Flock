@@ -1,34 +1,33 @@
 //
-//  UserInfoVCUser.swift
+//  FollowersUserInfoVC.swift
 //  Flock
 //
-//  Created by Wook Rhyu on 7/6/21.
+//  Created by Wook Rhyu on 6/23/21.
 //
 
 import UIKit
 
-class UserInfoVCUser: FDataLoadingVC {
+class FollowersUserInfoVC: FDataLoadingVC {
     
     let headerView                      = UIView()
     let tweetTable                      = UITableView()
     var arrayOfTweets:[TweetsData]      = []
 
-    var username: String
+    var FollowersData: FollowersData!
     let padding: CGFloat = 5
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBlue
-        getUserInfo(for: username)
+        view.backgroundColor = .systemBackground
         layoutBaseViews()
-        addChildViews(UserData: User)
+        addChildViews(FollowersData: FollowersData!)
         configureTableView()
         getTweets(id: FollowersData!.id)
     }
     
-    init(for username: String) {
-        self.username = username
+    init(FollowersData: FollowersData) {
+        self.FollowersData = FollowersData
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -36,29 +35,12 @@ class UserInfoVCUser: FDataLoadingVC {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func getUserInfo(for username: String){
-        showLoadingView()
-        NetworkManager.shared.getTweetsFromID(username: username) { [weak self] result in
-            guard let self = self else { return }
-            self.dismissLoadingView()
-            
-            switch result {
-            case .success(_):
-                for tweet in self.arrayOfTweets{
-                    print(tweet)
-                }
-            case .failure(let error):
-                self.presentFAlertOnMainThread(title: "There was a problem", message: error.rawValue, buttonTitle: "Ok", errorType: .networkError)
-            }
-        }
-        
-    }
-    
     private func layoutBaseViews() {
         view.addSubview(headerView)
         
         headerView.translatesAutoresizingMaskIntoConstraints        = false
-        headerView.backgroundColor      = .systemPink
+        headerView.backgroundColor      = .systemBackground
+        headerView.dropShadow()
         
         NSLayoutConstraint.activate([
             headerView.topAnchor.constraint(equalTo: view.topAnchor, constant: 60),
@@ -68,8 +50,8 @@ class UserInfoVCUser: FDataLoadingVC {
         ])
     }
     
-    private func addChildViews(UserData: User){
-        self.add(childVC: UserHeaderViewController(UserData: User), to: self.headerView)
+    private func addChildViews(FollowersData: FollowersData){
+        self.add(childVC: UserHeaderViewController(FollwersData: FollowersData), to: self.headerView)
     }
     
     func add(childVC: UIViewController, to containerView: UIView){
@@ -86,7 +68,7 @@ class UserInfoVCUser: FDataLoadingVC {
         tweetTable.delegate             = self
         tweetTable.dataSource           = self
         tweetTable.register(TweetCell.self, forCellReuseIdentifier: "TweetCell")
-        
+        tweetTable.backgroundColor      = .systemBackground
         NSLayoutConstraint.activate([
             tweetTable.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: padding),
             tweetTable.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
@@ -117,7 +99,7 @@ class UserInfoVCUser: FDataLoadingVC {
     }
 }
 
-extension UserInfoVCFollowers: UITableViewDelegate, UITableViewDataSource{
+extension FollowersUserInfoVC: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TweetCell") as! TweetCell
         let tweet = arrayOfTweets[indexPath.row]

@@ -12,7 +12,7 @@ enum publicInfoType {
 }
 
 class FollowersAndFollowingView: UIView {
-    let titleLabel = FTitleLabel(textAlignment: .left, fontSize: 14)
+    let titleLabel = FTitleLabel(textAlignment: .left, fontSize: 14, weight: .bold)
     let countLabel = FSecondaryTitleLabel(textAlignment: .left, fontSize: 14)
     
     override init(frame: CGRect) {

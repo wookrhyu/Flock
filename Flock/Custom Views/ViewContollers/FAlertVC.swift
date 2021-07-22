@@ -10,9 +10,9 @@ import UIKit
 class FAlertVC: UIViewController {
     
     let containerView                   = FAlertContainerView()
-    let titleLabel                      = FTitleLabel(textAlignment: .center, fontSize: 20)
+    let titleLabel                      = FTitleLabel(textAlignment: .center, fontSize: 20, weight: .bold)
     let messageLabel                    = FBodyLabel(textAlignment: .center)
-    let searchButton                    = FButton(backgroundColor: .systemBlue, title: "Ok")
+    let searchButton                    = FButton(backgroundColor: Colors.twitterBlue, title: "Ok")
     
     var alertTitle: String?
     var message: String?

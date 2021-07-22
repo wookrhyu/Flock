@@ -42,12 +42,11 @@ class FollowerVC: FDataLoadingVC{
     
     private func configureNavigationBar(){
         let navbar                  = navigationController
-        navbar?.setNavigationBarHidden(false, animated: true)
+        navbar?.setNavigationBarHidden(false, animated: false)
         navbar?.navigationItem.hidesBackButton = true
         navbar?.navigationBar.topItem?.title = username
         navbar?.navigationBar.prefersLargeTitles = true
-//        navbar?.navigationBar.layer.masksToBounds = true
-//        navbar?.navigationBar.layer.cornerRadius = 20
+        navbar?.navigationBar.barTintColor = .systemBackground
     }
     
     private func configureTableView() {
@@ -58,8 +57,8 @@ class FollowerVC: FDataLoadingVC{
         tableView.delegate                      = self
         tableView.dataSource                    = self
         tableView.separatorStyle                = .none
-        
         tableView.register(FollowerAndFollowingCell.self, forCellReuseIdentifier: FollowerAndFollowingCell.reuseID)
+        tableView.backgroundColor               = .systemBackground
     }
     
     private func getFollowers(username: String){
@@ -112,7 +111,7 @@ extension FollowerVC: UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let destVC = UserInfoVCFollowers(FollowersData: followers[indexPath.row])
+        let destVC = FollowersUserInfoVC(FollowersData: followers[indexPath.row])
         let navController   = UINavigationController(rootViewController: destVC)
         present(navController, animated: true)
     }
