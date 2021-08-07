@@ -31,22 +31,24 @@ class FollowingVC: FDataLoadingVC {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        configureNavigationBar()
         configureViewContoller()
+        configureNavigationBar()
     }
     
     private func configureViewContoller() {
+        
         view.backgroundColor                    = .systemBackground
     }
     
     private func configureNavigationBar(){
-        let navbar                  = navigationController
+        
+        let navbar                                  = navigationController
+        
+        navbar?.navigationBar.prefersLargeTitles    = true
+        navbar?.navigationBar.barTintColor          = .systemBackground
         navbar?.setNavigationBarHidden(false, animated: false)
-        navbar?.navigationItem.hidesBackButton = true
-        navbar?.navigationBar.topItem?.title = username
-        navbar?.navigationBar.prefersLargeTitles = true
-        navbar?.navigationBar.barTintColor = .systemBackground
     }
+
     
     private func configureTableView() {
         view.addSubview(tableView)

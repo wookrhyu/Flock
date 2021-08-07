@@ -10,7 +10,6 @@ import UIKit
 class MainSearchScreenVC: UIViewController {
     
     let logoImageView           = UIImageView()
-    let lowerBirds              = UIImageView()
     let textContainer           = UIView()
     let logoBird                = UIImageView()
     let twitterHandleTextField  = FTextField()
@@ -20,47 +19,19 @@ class MainSearchScreenVC: UIViewController {
     
     var isTextEntered: Bool { return twitterHandleTextField.text!.isEmpty }
 
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
         configureWelcomeText()
         configureTwitterHandleTextField()
         configureSearchButton()
-        //configureLogoImageView()
-        //configureLowerBirds()
         dissmissKeyboard()
 
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        twitterHandleTextField.text = ""
-        navigationController?.setNavigationBarHidden(true, animated: true)
-    }
-    
-    func dissmissKeyboard() {
-        let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
-        view.addGestureRecognizer(tap)
-    }
-    
-    
-    @objc func pushFollowingAndFollowerTabBarContoller() {
+        setupMainScreen()
         
-        guard !isTextEntered else {
-            
-            presentFAlertOnMainThread(title: "Hey!", message: "Seems like you have not entered in anything, Please type in a valid twitter handle", buttonTitle: "Ok", errorType: FError.invalidHandle)
-            return
-        }
-        twitterHandleTextField.resignFirstResponder()
-        
-        let followingAndFollowerTabBarContoller = FollowingAndFollowerTabBarController()
-        let followingVC                         = FollowingVC(for: twitterHandleTextField.text!)
-        let followerVC                          = FollowerVC(for: twitterHandleTextField.text!)
-        let userVC                              = UserVC(for: twitterHandleTextField.text!)
-        followingAndFollowerTabBarContoller.setViewControllers([followerVC, followingVC, userVC], animated: false)
-        navigationController?.pushViewController(followingAndFollowerTabBarContoller, animated: true)
     }
     
     private func configureWelcomeText(){
@@ -69,7 +40,7 @@ class MainSearchScreenVC: UIViewController {
         view.addSubview(logoBird)
         
         welcomeText.text                    = "Hello!"
-        
+        view.backgroundColor                = .systemBackground
         logoBird.image                      = Images.logoBird
         logoBird.translatesAutoresizingMaskIntoConstraints = false
         
@@ -92,6 +63,16 @@ class MainSearchScreenVC: UIViewController {
             welcomeDescription.heightAnchor.constraint(equalToConstant: 45),
             welcomeDescription.widthAnchor.constraint(equalToConstant: 350)
         ])
+    }
+    
+    func setupMainScreen(){
+        twitterHandleTextField.text = ""
+        navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    func dissmissKeyboard() {
+        let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+        view.addGestureRecognizer(tap)
     }
     
     private func configureTwitterHandleTextField() {
@@ -133,6 +114,20 @@ class MainSearchScreenVC: UIViewController {
         ])
     }
     
+    @objc func pushFollowingAndFollowerTabBarContoller() {
+        guard !isTextEntered else {
+            presentFAlertOnMainThread(title: "Hey!", message: "Seems like you have not entered in anything, Please type in a valid twitter handle", buttonTitle: "Ok", errorType: FError.invalidHandle)
+            return
+        }
+        twitterHandleTextField.resignFirstResponder()
+        
+        let followingAndFollowerTabBarContoller = FollowingAndFollowerTabBarController()
+        let followingVC                         = FollowingVC(for: twitterHandleTextField.text!)
+        let followerVC                          = FollowerVC(for: twitterHandleTextField.text!)
+        let userVC                              = UserVC(for: twitterHandleTextField.text!)
+        followingAndFollowerTabBarContoller.setViewControllers([followerVC, followingVC, userVC], animated: false)
+        navigationController?.pushViewController(followingAndFollowerTabBarContoller, animated: true)
+    }
 
 }
 

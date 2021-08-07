@@ -14,11 +14,10 @@ class NetworkManager {
     var arrayOfTweets: [TweetsData]         = []
     let cache                               = NSCache<NSString, UIImage>()
     
-    
-    func getUserInfo(for username: String, completed: @escaping (Result<User,FError>) -> Void){
+
+    func getUserInfo(for username: String, completed: @escaping(Result<User,FError>) -> Void){
+        
         let endpoint = "https://api.twitter.com/2/users/by/username/\(username)?user.fields=description,public_metrics,profile_image_url"
-        
-        
         guard let url = URL(string: endpoint) else {
             completed(.failure(.invalidHandle))
             return
@@ -28,7 +27,6 @@ class NetworkManager {
         request.setValue("Bearer AAAAAAAAAAAAAAAAAAAAAJT5QQEAAAAAp5RfJ7XanIvNvR%2B6bVWuF17RLLk%3DcY69HP1qFQlHLgWliUMbIRAabxtdr6sP1zVuAmnRERm0kLF91D", forHTTPHeaderField:"Authorization")
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            
             if error != nil {
                 completed(.failure(.networkError))
             }
@@ -42,13 +40,12 @@ class NetworkManager {
                 }
             }
         }
-        
         task.resume()
     }
 
     private func getFollowers(for userID: Int, completed: @escaping (Result<Followers,FError>) -> Void){
-        let endpoint = "https://api.twitter.com/2/users/\(userID)/followers?user.fields=profile_image_url,public_metrics,description&max_results=300"
         
+        let endpoint = "https://api.twitter.com/2/users/\(userID)/followers?user.fields=profile_image_url,public_metrics,description&max_results=300"
         guard let url = URL(string: endpoint) else {
             completed(.failure(.invalidHandle))
             return
@@ -58,16 +55,10 @@ class NetworkManager {
         request.setValue("Bearer AAAAAAAAAAAAAAAAAAAAAJT5QQEAAAAAp5RfJ7XanIvNvR%2B6bVWuF17RLLk%3DcY69HP1qFQlHLgWliUMbIRAabxtdr6sP1zVuAmnRERm0kLF91D", forHTTPHeaderField:"Authorization")
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            
             if error != nil {
                 completed(.failure(.networkError))
             }
-            
-//            guard let data = data else {return}
-//            let dataasstring = String(data: data, encoding: .utf8)
-//            print(dataasstring)
-            
-            
+        
             if let data = data{
                 do {
                     let followers = try JSONDecoder().decode(Followers.self, from: data)
@@ -77,13 +68,12 @@ class NetworkManager {
                 }
             }
         }
-        
         task.resume()
     }
     
     private func getFollowing(for userID: Int, completed: @escaping (Result<Following,FError>) -> Void){
-        let endpoint = "https://api.twitter.com/2/users/\(userID)/following?user.fields=profile_image_url,public_metrics,description&max_results=300"
         
+        let endpoint = "https://api.twitter.com/2/users/\(userID)/following?user.fields=profile_image_url,public_metrics,description&max_results=300"
         guard let url = URL(string: endpoint) else {
             completed(.failure(.invalidHandle))
             return
@@ -93,11 +83,9 @@ class NetworkManager {
         request.setValue("Bearer AAAAAAAAAAAAAAAAAAAAAJT5QQEAAAAAp5RfJ7XanIvNvR%2B6bVWuF17RLLk%3DcY69HP1qFQlHLgWliUMbIRAabxtdr6sP1zVuAmnRERm0kLF91D", forHTTPHeaderField:"Authorization")
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            
             if error != nil {
                 completed(.failure(.networkError))
             }
-            
             
             if let data = data{
                 do {
@@ -112,11 +100,12 @@ class NetworkManager {
         task.resume()
     }
     
-    func followersFromID(username: String, completed: @escaping (Result<[FollowersData], FError>) -> Void){
+    func followersFromID(username: String, completed: @escaping(Result<[FollowersData], FError>) -> Void){
         getUserInfo(for: username) { result in
+            
             switch result {
-            case .success(let users):
-                let userID = Int(users.data.id)
+            case .success(let user):
+                let userID = Int(user.data.id)
                 self.getFollowers(for: userID!) { result in
                     
                     switch result {
@@ -128,9 +117,7 @@ class NetworkManager {
                     case .failure(_):
                         completed(.failure(.networkError))
                     }
-                    
                 }
-                
             case .failure(_):
                 completed(.failure(.networkError))
             }
@@ -141,20 +128,19 @@ class NetworkManager {
         getUserInfo(for: username) { result in
             
             switch result {
-            case .success(let users):
-                let userID = Int(users.data.id)
+            case .success(let user):
+                let userID = Int(user.data.id)
                 self.getFollowing(for: userID!) { result in
                     
                     switch result {
-                    case .success(let following):
-                        for follow in following.data{
+                    case .success(let followings):
+                        for follow in followings.data{
                             self.arrayOfFollowing.append(follow)
                         }
                         completed(.success(self.arrayOfFollowing))
                     case .failure(_):
                         completed(.failure(.networkError))
                     }
-                    
                 }
             case .failure(_):
                 completed(.failure(.networkError))
@@ -163,34 +149,9 @@ class NetworkManager {
         }
     }
     
-//    func getUserInfoFromID(username: String, completed: @escaping(Result<[Tweets], FError>)->Void){
-//        getId(for: username) { result in
-//
-//            switch result {
-//            case .success(let user):
-//                self.userInfo = user //puts userInfo in so that it could be used in the VC
-//                self.getTweets(of: self.userInfo.data.id) { result in
-//
-//                    switch result {
-//                    case .success(let tweets):
-//                        for tweet in tweets.data{
-//                            self.arrayOfTweets.append(tweet)
-//                        }
-//                    case .failure(_):
-//                        completed(.failure(.networkError))
-//                    }
-//
-//                }
-//            case .failure(_):
-//                completed(.failure(.networkError))
-//            }
-//
-//        }
-//    }
-    
     func getTweets(of id: String, completed: @escaping (Result<Tweets, FError>)-> Void){
-        let endpoint = "https://api.twitter.com/2/users/\(id)/tweets?max_results=30"
         
+        let endpoint = "https://api.twitter.com/2/users/\(id)/tweets?max_results=30"
         guard let url = URL(string: endpoint) else {
             completed(.failure(.invalidHandle))
             return
@@ -203,6 +164,7 @@ class NetworkManager {
             if error != nil {
                 completed(.failure(.networkError))
             }
+            
             if let data = data{
                 do {
                     let tweets = try JSONDecoder().decode(Tweets.self, from: data)
@@ -212,15 +174,13 @@ class NetworkManager {
                 }
             }
         }
-        
         task.resume()
     }
     
     
     func downloadImage(from urlString: String, completed: @escaping(UIImage?) -> Void){
         
-        let cacheKey = NSString(string: urlString)
-        
+        let cacheKey = NSString(string: urlString)//***
         if let image = cache.object(forKey: cacheKey){
             completed(image)
             return
@@ -230,7 +190,8 @@ class NetworkManager {
         guard let url = URL(string: newURL) else {
             completed(nil)
             return
-        }
+        }//this is to get a a better quality picture
+        
         let task = URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
             
             guard let self = self, //maybe watch video here again

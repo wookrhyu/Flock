@@ -7,16 +7,16 @@
 
 import UIKit
 
-class FollowerVC: FDataLoadingVC{
+class FollowerVC: FDataLoadingVC {
     
     let tableView                               = UITableView()
     var followers: [FollowersData]              = []
-    var isError: Bool                           = false
     var username: String!
     
     init(for username: String) {
         self.username = username
         super.init(nibName: nil, bundle: nil)
+        title                                   = "Followers"
     }
     
     required init?(coder: NSCoder) {
@@ -27,43 +27,47 @@ class FollowerVC: FDataLoadingVC{
         super.viewDidLoad()
         configureViewContoller()
         configureTableView()
-        getFollowers(username: username)//specific
+        getFollowers(username: username)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureNavigationBar()
-        
     }
+    
     private func configureViewContoller() {
+        
         view.backgroundColor                    = .systemBackground
-        title                                   = "Followers"
     }
     
     private func configureNavigationBar(){
-        let navbar                  = navigationController
+        
+        let navbar                                  = navigationController
+        
+        navbar?.navigationBar.topItem?.title        = username
+        navbar?.navigationBar.prefersLargeTitles    = true
+        navbar?.navigationBar.barTintColor          = .systemBackground
+        
         navbar?.setNavigationBarHidden(false, animated: false)
-        navbar?.navigationItem.hidesBackButton = true
-        navbar?.navigationBar.topItem?.title = username
-        navbar?.navigationBar.prefersLargeTitles = true
-        navbar?.navigationBar.barTintColor = .systemBackground
     }
     
     private func configureTableView() {
-        view.addSubview(tableView)
         
+        view.addSubview(tableView)
+
         tableView.frame                         = view.bounds
         tableView.rowHeight                     = 75
         tableView.delegate                      = self
         tableView.dataSource                    = self
         tableView.separatorStyle                = .none
-        tableView.register(FollowerAndFollowingCell.self, forCellReuseIdentifier: FollowerAndFollowingCell.reuseID)
         tableView.backgroundColor               = .systemBackground
+        
+        tableView.register(FollowerAndFollowingCell.self, forCellReuseIdentifier: FollowerAndFollowingCell.reuseID)
     }
     
-    private func getFollowers(username: String){
+    private func getFollowers(username: String) {
+       
         showLoadingView()
-        
         NetworkManager.shared.followersFromID(username: username) { [weak self] result in
             guard let self = self else { return }
             self.dismissLoadingView()
@@ -71,13 +75,15 @@ class FollowerVC: FDataLoadingVC{
             switch result {
             case .success(let followers):
                 self.updateUI(with: followers)
+                
             case .failure(let error):
                 self.presentFAlertOnMainThread(title: "There was a problem", message: error.rawValue, buttonTitle: "Ok", errorType: .networkError)
             }
         }
     }
     
-    private func updateUI(with followers: [FollowersData]){
+    private func updateUI(with followers: [FollowersData]) {
+        
         if followers.isEmpty{
             print("empty")
         } else {
@@ -88,18 +94,12 @@ class FollowerVC: FDataLoadingVC{
             }
         }
     }
-    
-    private func dismissVCIfError() {
-        if isError == true {
-            dismiss(animated: true)
-            print("passed here")
-        }
-    }
 }
 
 extension FollowerVC: UITableViewDataSource, UITableViewDelegate{
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell     = tableView.dequeueReusableCell(withIdentifier: FollowerAndFollowingCell.reuseID) as! FollowerAndFollowingCell
         let follower = followers[indexPath.row]
         cell.setFollower(follower: follower)
@@ -107,10 +107,12 @@ extension FollowerVC: UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         return followers.count
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         let destVC = FollowersUserInfoVC(FollowersData: followers[indexPath.row])
         let navController   = UINavigationController(rootViewController: destVC)
         present(navController, animated: true)
