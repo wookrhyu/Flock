@@ -9,10 +9,11 @@ import UIKit
 
 class FollowerVC: FDataLoadingVC {
     
+    // enum and use switch
+    
     let tableView                               = UITableView()
     var followers: [FollowersData]              = []
     var username: String!
-    
     init(for username: String) {
         self.username = username
         super.init(nibName: nil, bundle: nil)

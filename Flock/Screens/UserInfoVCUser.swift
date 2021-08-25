@@ -7,6 +7,12 @@
 
 import UIKit
 
+enum UserInfo {
+    case Followers
+    case Following
+    case Searched
+}
+
 class UserVC: FDataLoadingVC {
     
     let headerView                      = UIView()
@@ -44,7 +50,6 @@ class UserVC: FDataLoadingVC {
     private func configureNavigationBar() {
         let navbar                  = navigationController
         navbar?.setNavigationBarHidden(true, animated: false)
- 
     }
     
     private func getUserInfo(for username: String){

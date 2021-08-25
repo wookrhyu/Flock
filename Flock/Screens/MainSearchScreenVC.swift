@@ -122,7 +122,8 @@ class MainSearchScreenVC: UIViewController {
         twitterHandleTextField.resignFirstResponder()
         
         let followingAndFollowerTabBarContoller = FollowingAndFollowerTabBarController()
-        let followingVC                         = FollowingVC(for: twitterHandleTextField.text!)
+//        let followingVC                         = FollowingVC(for: twitterHandleTextField.text!)
+        let followingVC                         = FollowingAndFollowerVC(for: twitterHandleTextField.text!, data: DataType.Following)
         let followerVC                          = FollowerVC(for: twitterHandleTextField.text!)
         let userVC                              = UserVC(for: twitterHandleTextField.text!)
         followingAndFollowerTabBarContoller.setViewControllers([followerVC, followingVC, userVC], animated: false)

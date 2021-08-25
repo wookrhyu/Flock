@@ -18,3 +18,15 @@ enum Colors {
     static let lighterBlue      = UIColor.init(red: 219/255, green: 242/255, blue: 255/255, alpha: 0.3)
     static let twitterBlue      = UIColor.init(red: 29/255, green: 155/255, blue: 240/255, alpha: 0.95)
 }
+
+struct Utility{
+    
+    func isValidEmail(email: String) -> Bool {
+        
+        if email.contains("@") {
+            return true
+        }
+        return false
+    }
+    
+}
