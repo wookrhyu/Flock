@@ -9,7 +9,6 @@ import UIKit
 
 class FollowerVC: FDataLoadingVC {
     
-    // enum and use switch
     
     let tableView                               = UITableView()
     var followers: [FollowersData]              = []
@@ -17,7 +16,8 @@ class FollowerVC: FDataLoadingVC {
     init(for username: String) {
         self.username = username
         super.init(nibName: nil, bundle: nil)
-        title                                   = "Followers"
+        title = "Followers"
+        
     }
     
     required init?(coder: NSCoder) {
@@ -33,37 +33,38 @@ class FollowerVC: FDataLoadingVC {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        configureNavigationBar()
+        //configureNavigationBar()
     }
     
     private func configureViewContoller() {
-        
-        view.backgroundColor                    = .systemBackground
+        view.backgroundColor = .systemBackground
     }
     
     private func configureNavigationBar(){
+        let tabBar = tabBarController
+        tabBar?.navigationController?.setNavigationBarHidden(false, animated: false)
+        tabBar?.navigationItem.title = "Followers"
         
-        let navbar                                  = navigationController
-        
-        navbar?.navigationBar.topItem?.title        = username
-        navbar?.navigationBar.prefersLargeTitles    = true
-        navbar?.navigationBar.barTintColor          = .systemBackground
-        
-        navbar?.setNavigationBarHidden(false, animated: false)
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navigationController?.navigationBar.shadowImage = UIImage()
     }
-    
-    private func configureTableView() {
-        
-        view.addSubview(tableView)
 
-        tableView.frame                         = view.bounds
-        tableView.rowHeight                     = 75
-        tableView.delegate                      = self
-        tableView.dataSource                    = self
-        tableView.separatorStyle                = .none
-        tableView.backgroundColor               = .systemBackground
+    private func configureTableView() {
+        view.addSubview(tableView)
+        tableView.frame = .init(
+            x: 0,
+            y: 100,
+            width: 388,
+            height: 800)
         
-        tableView.register(FollowerAndFollowingCell.self, forCellReuseIdentifier: FollowerAndFollowingCell.reuseID)
+        tableView.rowHeight = 75
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.separatorStyle = .singleLine
+        tableView.backgroundColor               = .systemBackground
+        tableView.register(
+            FollowerAndFollowingCell.self,
+            forCellReuseIdentifier: FollowerAndFollowingCell.reuseID)
     }
     
     private func getFollowers(username: String) {
@@ -114,7 +115,7 @@ extension FollowerVC: UITableViewDataSource, UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let destVC = FollowersUserInfoVC(FollowersData: followers[indexPath.row])
+        let destVC = UserInfoVC(FollowersData: followers[indexPath.row], FollowingData: nil, for: nil)
         let navController   = UINavigationController(rootViewController: destVC)
         present(navController, animated: true)
     }

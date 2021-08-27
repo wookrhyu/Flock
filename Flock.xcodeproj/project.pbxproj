@@ -10,7 +10,7 @@
 		536C2272268D2EA700A66D3D /* FDataLoadingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536C2271268D2EA700A66D3D /* FDataLoadingVC.swift */; };
 		536C227B2693C7B500A66D3D /* FollowingUserInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536C227A2693C7B500A66D3D /* FollowingUserInfoVC.swift */; };
 		536C227D2693C88300A66D3D /* UserHeaderViewContollerFollowing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536C227C2693C88300A66D3D /* UserHeaderViewContollerFollowing.swift */; };
-		536C22812695123100A66D3D /* UserInfoVCUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536C22802695123100A66D3D /* UserInfoVCUser.swift */; };
+		536C22812695123100A66D3D /* SearchedUserInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536C22802695123100A66D3D /* SearchedUserInfoVC.swift */; };
 		536C2283269521C500A66D3D /* UserHeaderViewControllerUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536C2282269521C500A66D3D /* UserHeaderViewControllerUser.swift */; };
 		5393D5872669921100EBB543 /* FollowerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5393D5862669921100EBB543 /* FollowerVC.swift */; };
 		5393D5892669921C00EBB543 /* FollowingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5393D5882669921C00EBB543 /* FollowingVC.swift */; };
@@ -30,7 +30,7 @@
 		539C029526792C020028A381 /* FError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539C029426792C020028A381 /* FError.swift */; };
 		539C0297267A69040028A381 /* FSecondaryTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539C0296267A69040028A381 /* FSecondaryTitleLabel.swift */; };
 		539C02A62683B52B0028A381 /* FollowersUserInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539C02A52683B52B0028A381 /* FollowersUserInfoVC.swift */; };
-		539C02A926852B1E0028A381 /* UserHeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539C02A826852B1E0028A381 /* UserHeaderViewController.swift */; };
+		539C02A926852B1E0028A381 /* UserInfoHeaderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539C02A826852B1E0028A381 /* UserInfoHeaderVC.swift */; };
 		539C02AD268A59590028A381 /* TweetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539C02AC268A59590028A381 /* TweetCell.swift */; };
 		53A46B402668046700B71CA9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53A46B3F2668046700B71CA9 /* AppDelegate.swift */; };
 		53A46B422668046700B71CA9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53A46B412668046700B71CA9 /* SceneDelegate.swift */; };
@@ -45,6 +45,7 @@
 		53B418B5269CDC6600463B74 /* UIImage + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B418B4269CDC6600463B74 /* UIImage + Ext.swift */; };
 		53E5297126C5D4D100B3B103 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 53E5297026C5D4D100B3B103 /* SnapshotTesting */; };
 		53E5297426D4594800B3B103 /* FollowingAndFollowerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E5297326D4594800B3B103 /* FollowingAndFollowerVC.swift */; };
+		53E5298C26D7024100B3B103 /* UserInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E5298B26D7024100B3B103 /* UserInfoVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,7 +62,7 @@
 		536C2271268D2EA700A66D3D /* FDataLoadingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDataLoadingVC.swift; sourceTree = "<group>"; };
 		536C227A2693C7B500A66D3D /* FollowingUserInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingUserInfoVC.swift; sourceTree = "<group>"; };
 		536C227C2693C88300A66D3D /* UserHeaderViewContollerFollowing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHeaderViewContollerFollowing.swift; sourceTree = "<group>"; };
-		536C22802695123100A66D3D /* UserInfoVCUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoVCUser.swift; sourceTree = "<group>"; };
+		536C22802695123100A66D3D /* SearchedUserInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchedUserInfoVC.swift; sourceTree = "<group>"; };
 		536C2282269521C500A66D3D /* UserHeaderViewControllerUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHeaderViewControllerUser.swift; sourceTree = "<group>"; };
 		5393D5862669921100EBB543 /* FollowerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerVC.swift; sourceTree = "<group>"; };
 		5393D5882669921C00EBB543 /* FollowingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingVC.swift; sourceTree = "<group>"; };
@@ -83,7 +84,7 @@
 		539C029426792C020028A381 /* FError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FError.swift; sourceTree = "<group>"; };
 		539C0296267A69040028A381 /* FSecondaryTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSecondaryTitleLabel.swift; sourceTree = "<group>"; };
 		539C02A52683B52B0028A381 /* FollowersUserInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersUserInfoVC.swift; sourceTree = "<group>"; };
-		539C02A826852B1E0028A381 /* UserHeaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHeaderViewController.swift; sourceTree = "<group>"; };
+		539C02A826852B1E0028A381 /* UserInfoHeaderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoHeaderVC.swift; sourceTree = "<group>"; };
 		539C02AC268A59590028A381 /* TweetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetCell.swift; sourceTree = "<group>"; };
 		53A46B3C2668046700B71CA9 /* Flock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		53A46B3F2668046700B71CA9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -99,6 +100,7 @@
 		53B418B2269CCC5900463B74 /* FTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTextView.swift; sourceTree = "<group>"; };
 		53B418B4269CDC6600463B74 /* UIImage + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + Ext.swift"; sourceTree = "<group>"; };
 		53E5297326D4594800B3B103 /* FollowingAndFollowerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingAndFollowerVC.swift; sourceTree = "<group>"; };
+		53E5298B26D7024100B3B103 /* UserInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,16 +130,6 @@
 				53B418B4269CDC6600463B74 /* UIImage + Ext.swift */,
 			);
 			path = Extenstions;
-			sourceTree = "<group>";
-		};
-		536C227F269511C000A66D3D /* UserHeader */ = {
-			isa = PBXGroup;
-			children = (
-				539C02A826852B1E0028A381 /* UserHeaderViewController.swift */,
-				536C227C2693C88300A66D3D /* UserHeaderViewContollerFollowing.swift */,
-				536C2282269521C500A66D3D /* UserHeaderViewControllerUser.swift */,
-			);
-			path = UserHeader;
 			sourceTree = "<group>";
 		};
 		5393D59B2672738600EBB543 /* Managers */ = {
@@ -213,9 +205,9 @@
 		539C02AF268CDB250028A381 /* ViewContollers */ = {
 			isa = PBXGroup;
 			children = (
-				536C227F269511C000A66D3D /* UserHeader */,
 				5393D593266FF65400EBB543 /* FAlertVC.swift */,
 				536C2271268D2EA700A66D3D /* FDataLoadingVC.swift */,
+				539C02A826852B1E0028A381 /* UserInfoHeaderVC.swift */,
 			);
 			path = ViewContollers;
 			sourceTree = "<group>";
@@ -224,6 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				53A46B3E2668046700B71CA9 /* Flock */,
+				53E5298D26D7205300B3B103 /* optimized so files I dont need anymore */,
 				5394E41D26C197AD00A88B17 /* FlockTests */,
 				53A46B3D2668046700B71CA9 /* Products */,
 			);
@@ -241,13 +234,13 @@
 		53A46B3E2668046700B71CA9 /* Flock */ = {
 			isa = PBXGroup;
 			children = (
-				53A46B4D2668046F00B71CA9 /* Info.plist */,
 				53A46B5C266838E600B71CA9 /* Screens */,
 				53A46B5D266838F800B71CA9 /* Custom Views */,
 				5393D59B2672738600EBB543 /* Managers */,
 				53A46B5F26683B6200B71CA9 /* Utility */,
 				53A46B5E2668391A00B71CA9 /* Support */,
 				536C22792693C4E400A66D3D /* Extenstions */,
+				53A46B4D2668046F00B71CA9 /* Info.plist */,
 			);
 			path = Flock;
 			sourceTree = "<group>";
@@ -257,12 +250,7 @@
 			children = (
 				53A46B5726682FD000B71CA9 /* MainSearchScreenVC.swift */,
 				5393D58A2669931200EBB543 /* FollowingAndFollowerTabBarController.swift */,
-				5393D5862669921100EBB543 /* FollowerVC.swift */,
-				5393D5882669921C00EBB543 /* FollowingVC.swift */,
-				536C22802695123100A66D3D /* UserInfoVCUser.swift */,
-				539C02A52683B52B0028A381 /* FollowersUserInfoVC.swift */,
-				536C227A2693C7B500A66D3D /* FollowingUserInfoVC.swift */,
-				53E5297326D4594800B3B103 /* FollowingAndFollowerVC.swift */,
+				53E5298E26D7210700B3B103 /* TabBarScreens */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -309,6 +297,29 @@
 				53B418B2269CCC5900463B74 /* FTextView.swift */,
 			);
 			path = Text;
+			sourceTree = "<group>";
+		};
+		53E5298D26D7205300B3B103 /* optimized so files I dont need anymore */ = {
+			isa = PBXGroup;
+			children = (
+				53E5297326D4594800B3B103 /* FollowingAndFollowerVC.swift */,
+				536C227C2693C88300A66D3D /* UserHeaderViewContollerFollowing.swift */,
+				539C02A52683B52B0028A381 /* FollowersUserInfoVC.swift */,
+				536C227A2693C7B500A66D3D /* FollowingUserInfoVC.swift */,
+				536C22802695123100A66D3D /* SearchedUserInfoVC.swift */,
+				536C2282269521C500A66D3D /* UserHeaderViewControllerUser.swift */,
+			);
+			path = "optimized so files I dont need anymore";
+			sourceTree = "<group>";
+		};
+		53E5298E26D7210700B3B103 /* TabBarScreens */ = {
+			isa = PBXGroup;
+			children = (
+				5393D5862669921100EBB543 /* FollowerVC.swift */,
+				5393D5882669921C00EBB543 /* FollowingVC.swift */,
+				53E5298B26D7024100B3B103 /* UserInfoVC.swift */,
+			);
+			path = TabBarScreens;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -440,12 +451,12 @@
 				536C227B2693C7B500A66D3D /* FollowingUserInfoVC.swift in Sources */,
 				5393D59A2672733400EBB543 /* IDModel.swift in Sources */,
 				53A46B422668046700B71CA9 /* SceneDelegate.swift in Sources */,
-				536C22812695123100A66D3D /* UserInfoVCUser.swift in Sources */,
+				536C22812695123100A66D3D /* SearchedUserInfoVC.swift in Sources */,
 				53B418B5269CDC6600463B74 /* UIImage + Ext.swift in Sources */,
 				536C2283269521C500A66D3D /* UserHeaderViewControllerUser.swift in Sources */,
 				5393D5962670119800EBB543 /* UIViewContoler+EXT.swift in Sources */,
 				536C227D2693C88300A66D3D /* UserHeaderViewContollerFollowing.swift in Sources */,
-				539C02A926852B1E0028A381 /* UserHeaderViewController.swift in Sources */,
+				539C02A926852B1E0028A381 /* UserInfoHeaderVC.swift in Sources */,
 				53B418B3269CCC5900463B74 /* FTextView.swift in Sources */,
 				5393D594266FF65400EBB543 /* FAlertVC.swift in Sources */,
 				5393D5872669921100EBB543 /* FollowerVC.swift in Sources */,
@@ -460,6 +471,7 @@
 				53A46B6126683B7200B71CA9 /* Constants.swift in Sources */,
 				53E5297426D4594800B3B103 /* FollowingAndFollowerVC.swift in Sources */,
 				539C02A62683B52B0028A381 /* FollowersUserInfoVC.swift in Sources */,
+				53E5298C26D7024100B3B103 /* UserInfoVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

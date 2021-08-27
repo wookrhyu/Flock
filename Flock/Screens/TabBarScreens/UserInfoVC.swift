@@ -1,74 +1,80 @@
 //
-//  UserVC.swift
+//  UserInfoVC.swift
 //  Flock
 //
-//  Created by Wook Rhyu on 7/6/21.
+//  Created by Wook Rhyu on 8/25/21.
 //
 
 import UIKit
 
-enum UserInfo {
-    case Followers
-    case Following
-    case Searched
-}
 
-class UserVC: FDataLoadingVC {
+class UserInfoVC: FDataLoadingVC {
     
     let headerView                      = UIView()
     let tweetTable                      = UITableView()
     var arrayOfTweets:[TweetsData]      = []
 
-    var username: String
-    var userInfo: User!
+    var followersData: FollowersData?
+    var followingData: FollowingData?
+    var userData: User?
+    var username: String?
+    
     let padding: CGFloat = 5
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .systemBackground
+        layoutBaseViews()
+        configureVCFunction()
+        configureTableView()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        configureNavigationBar()
+    }
     
-    init(for username: String) {
+    init(FollowersData: FollowersData?, FollowingData: FollowingData?, for username: String?) {
+        self.followersData = FollowersData
+        self.followingData = FollowingData
         self.username = username
         super.init(nibName: nil, bundle: nil)
-        title                               = "Me"
+        title = "\(username ?? "default value")"
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .systemBackground
-        getUserInfo(for: username)
-        layoutBaseViews()
-        configureTableView()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        configureNavigationBar()
+    private func configureVCFunction() {
+        if followersData != nil {
+            self.add(
+                childVC: UserInfoHeaderVC(
+                    FollwersData: followersData,
+                    FollowingData: nil,
+                    UserData: nil),
+                to: self.headerView)
+            
+            getTweets(id: followersData!.id)
+            
+        } else if followingData != nil{
+            self.add(
+                childVC: UserInfoHeaderVC(
+                    FollwersData: nil,
+                    FollowingData: followingData,
+                    UserData: nil),
+                to: self.headerView)
+            
+            getTweets(id: followingData!.id)
+            
+        } else {
+            getUserInfo(for: username!)
+        }
+        
     }
     
     private func configureNavigationBar() {
         let navbar                  = navigationController
         navbar?.setNavigationBarHidden(true, animated: false)
-    }
-    
-    private func getUserInfo(for username: String){
-        NetworkManager.shared.getUserInfo(for: username) {[weak self] result in
-            guard let self = self else { return }
-            switch result {
-            
-            case .success(let user):
-                self.userInfo = user
-            case .failure(let error):
-                self.presentFAlertOnMainThread(title: "There was a problem", message: error.rawValue, buttonTitle: "Ok", errorType: .networkError)
-            }
-            
-            DispatchQueue.main.async {
-                self.addChildViews(UserData: self.userInfo)
-                self.getTweets(id: self.userInfo.data.id)
-            }
-        }
-        
     }
     
     private func layoutBaseViews() {
@@ -86,10 +92,6 @@ class UserVC: FDataLoadingVC {
         ])
     }
     
-    private func addChildViews(UserData: User){
-        self.add(childVC: UserHeaderViewControllerUser(UserData: UserData), to: self.headerView)
-    }
-    
     func add(childVC: UIViewController, to containerView: UIView){
         addChild(childVC)
         containerView.addSubview(childVC.view)
@@ -104,13 +106,38 @@ class UserVC: FDataLoadingVC {
         tweetTable.delegate             = self
         tweetTable.dataSource           = self
         tweetTable.register(TweetCell.self, forCellReuseIdentifier: "TweetCell")
-        
+        tweetTable.backgroundColor      = .systemBackground
         NSLayoutConstraint.activate([
             tweetTable.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: padding),
             tweetTable.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
             tweetTable.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
             tweetTable.heightAnchor.constraint(equalToConstant: 600)
         ])
+    }
+    
+    private func getUserInfo(for username: String){
+        NetworkManager.shared.getUserInfo(for: username) {[weak self] result in
+            guard let self = self else { return }
+            switch result {
+            
+            case .success(let user):
+                self.userData = user
+            case .failure(let error):
+                self.presentFAlertOnMainThread(title: "There was a problem", message: error.rawValue, buttonTitle: "Ok", errorType: .networkError)
+            }
+            
+            DispatchQueue.main.async {
+                self.add(
+                    childVC: UserInfoHeaderVC(
+                        FollwersData: nil,
+                        FollowingData: nil,
+                        UserData: self.userData),
+                    to: self.headerView)
+                
+                self.getTweets(id: self.userData!.data.id)
+            }
+        }
+        
     }
     
     private func getTweets(id: String){
@@ -135,7 +162,7 @@ class UserVC: FDataLoadingVC {
     }
 }
 
-extension UserVC: UITableViewDelegate, UITableViewDataSource{
+extension UserInfoVC: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TweetCell") as! TweetCell
         let tweet = arrayOfTweets[indexPath.row]

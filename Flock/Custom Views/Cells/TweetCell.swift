@@ -14,7 +14,8 @@ class TweetCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style:style, reuseIdentifier: reuseIdentifier)
         configureTweetLabel()
-        backgroundColor = .systemBackground    }
+        backgroundColor = .systemBackground
+    }
     
     private func configureTweetLabel() {
         addSubview(tweet)

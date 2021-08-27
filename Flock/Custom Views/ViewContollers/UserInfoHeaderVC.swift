@@ -1,13 +1,23 @@
 //
-//  UserHeaderViewContollerFollowing.swift
+//  UserInfoHeaderVC.swift
 //  Flock
 //
-//  Created by Wook Rhyu on 7/5/21.
+//  Created by Wook Rhyu on 6/24/21.
 //
 
 import UIKit
 
-class UserHeaderViewControllerFollowing: UIViewController {
+struct followersOrFollowingOrUserData {
+    var id: String!
+    var profile_image_url: String!
+    var name: String!
+    var description: String!
+    var username: String!
+    var followers_count: String!
+    var following_count: String!
+}
+
+class UserInfoHeaderVC: UIViewController {
     
     let avatarImageView         = FAvatarImageView(frame: .zero)
     let usernameLabel           = FTitleLabel(textAlignment: .left, fontSize: 30, weight: .bold)
@@ -18,18 +28,25 @@ class UserHeaderViewControllerFollowing: UIViewController {
     let followerCount           = FTitleLabel(textAlignment: .left, fontSize: 16, weight: .semibold)
     let followingCount          = FTitleLabel(textAlignment: .left, fontSize: 16, weight: .semibold)
     
-    var FollowingData: FollowingData!
+    var followersData: FollowersData?
+    var followingData: FollowingData?
+    var userData: User?
+    var headerData: followersOrFollowingOrUserData?
         
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setElementsToVariables(FollowingData: FollowingData)
+        view.backgroundColor    = .systemBackground
+        configureHeaderInfo()
+        setElementsToVariables(for: headerData!)
         configureImageAndUserName()
         configureFollowersAndFollowing()
     }
      
-    init(FollowingData: FollowingData) {
-        self.FollowingData = FollowingData
+    init(FollwersData: FollowersData?, FollowingData: FollowingData?, UserData: User?) {
+        self.followersData = FollwersData
+        self.followingData = FollowingData
+        self.userData = UserData
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -37,19 +54,48 @@ class UserHeaderViewControllerFollowing: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setElementsToVariables(FollowingData: FollowingData) {
-        
-        avatarImageView.downloadImage(fromURL: FollowingData.profile_image_url)
-        usernameLabel.text      = FollowingData.name
-        twitterhandle.text      = "@\(FollowingData.username)"
-        bio.text                = FollowingData.description
+    private func configureHeaderInfo() {
+        if followingData != nil {
+            headerData = followersOrFollowingOrUserData.init(
+                id: followingData!.id,
+                profile_image_url: followingData!.profile_image_url,
+                name: followingData!.name,
+                description: followingData!.description,
+                username: followingData!.username,
+                followers_count: String(followingData!.public_metrics.followers_count),
+                following_count: String(followingData!.public_metrics.following_count))
+        }else if followersData != nil{
+            headerData = followersOrFollowingOrUserData.init(
+                id: followersData!.id,
+                profile_image_url: followersData!.profile_image_url,
+                name: followersData!.name,
+                description: followersData!.description,
+                username: followersData!.username,
+                followers_count: String(followersData!.public_metrics.followers_count),
+                following_count: String(followersData!.public_metrics.following_count))
+        }else{
+            headerData = followersOrFollowingOrUserData.init(
+                id: userData!.data.id,
+                profile_image_url: userData!.data.profile_image_url,
+                name: userData!.data.name,
+                description: userData!.data.description,
+                username: userData!.data.username,
+                followers_count: String(userData!.data.public_metrics.followers_count),
+                following_count: String(userData!.data.public_metrics.following_count))
+        }
+    }
+    
+    private func setElementsToVariables(for data: followersOrFollowingOrUserData) {
+        avatarImageView.downloadImage(fromURL: (data.profile_image_url)!)
+        usernameLabel.text      = data.name
+        twitterhandle.text      = "@\(data.username ?? "'empty'")" //****
+        bio.text                = data.description
         bio.numberOfLines       = 4
-        followerCount.text      = String(FollowingData.public_metrics.followers_count)
-        followingCount.text     = String(FollowingData.public_metrics.following_count)
+        followerCount.text      = data.followers_count
+        followingCount.text     = data.following_count
         bio.backgroundColor     = .systemBackground
         bio.textColor           = .black
         bio.dropShadow()
-        
     }
     
     private func configureImageAndUserName() {
@@ -89,8 +135,8 @@ class UserHeaderViewControllerFollowing: UIViewController {
         
         followerText.text       = "followers"
         followingText.text      = "following"
-        followerCount.text      = String(FollowingData.public_metrics.followers_count)
-        followingCount.text     = String(FollowingData.public_metrics.following_count)
+        followerCount.text      = headerData!.followers_count
+        followingCount.text     = headerData!.following_count
         
         
         
@@ -120,4 +166,7 @@ class UserHeaderViewControllerFollowing: UIViewController {
         
         
     }
+    
+    
+
 }

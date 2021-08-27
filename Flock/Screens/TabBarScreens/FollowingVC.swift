@@ -16,7 +16,7 @@ class FollowingVC: FDataLoadingVC {
     init(for username: String) {
         super.init(nibName: nil, bundle: nil)
         self.username = username
-        title                                   = "Following"
+        title = "Following"
     }
     
     required init?(coder: NSCoder) {
@@ -42,24 +42,31 @@ class FollowingVC: FDataLoadingVC {
     
     private func configureNavigationBar(){
         
-        let navbar                                  = navigationController
+        let tabBar = tabBarController
+        tabBar?.navigationController?.setNavigationBarHidden(false, animated: false)
+        tabBar?.navigationItem.title = "Following"
         
-        navbar?.navigationBar.prefersLargeTitles    = true
-        navbar?.navigationBar.barTintColor          = .systemBackground
-        navbar?.setNavigationBarHidden(false, animated: false)
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navigationController?.navigationBar.shadowImage = UIImage()
     }
 
     
     private func configureTableView() {
         view.addSubview(tableView)
+        tableView.frame = .init(
+            x: 0,
+            y: 100,
+            width: 389,
+            height: 800)
         
-        tableView.frame                         = view.bounds
-        tableView.rowHeight                     = 75
-        tableView.delegate                      = self
-        tableView.dataSource                    = self
-        tableView.separatorStyle                = .singleLine
-        tableView.register(FollowerAndFollowingCell.self, forCellReuseIdentifier: FollowerAndFollowingCell.reuseID)
+        tableView.rowHeight = 75
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.separatorStyle = .singleLine
         tableView.backgroundColor               = .systemBackground
+        tableView.register(
+            FollowerAndFollowingCell.self,
+            forCellReuseIdentifier: FollowerAndFollowingCell.reuseID)
     }
     
     private func getFollowing(username: String){
@@ -106,7 +113,7 @@ extension FollowingVC: UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let destVC = FollowingUserInfoVC(FollowingData: following[indexPath.row])
+        let destVC = UserInfoVC(FollowersData: nil, FollowingData: following[indexPath.row], for: nil)
         let navController   = UINavigationController(rootViewController: destVC)
         present(navController, animated: true)
     }
