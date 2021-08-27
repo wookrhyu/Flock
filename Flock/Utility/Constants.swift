@@ -17,6 +17,7 @@ enum Colors {
     static let lightBlue        = UIColor.init(red: 219/255, green: 242/255, blue: 255/255, alpha: 1)
     static let lighterBlue      = UIColor.init(red: 219/255, green: 242/255, blue: 255/255, alpha: 0.3)
     static let twitterBlue      = UIColor.init(red: 29/255, green: 155/255, blue: 240/255, alpha: 0.95)
+    static let lightBlack       = UIColor.init(red: 60/255, green: 60/255, blue: 60/255, alpha: 1)
 }
 
 struct Utility{

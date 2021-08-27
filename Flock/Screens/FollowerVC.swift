@@ -1,5 +1,5 @@
 //
-//  FollowingVC.swift
+//  FollowerVC.swift
 //  Flock
 //
 //  Created by Wook Rhyu on 6/3/21.
@@ -7,16 +7,17 @@
 
 import UIKit
 
-class FollowingVC: FDataLoadingVC {
+class FollowerVC: FDataLoadingVC {
     
-    let tableView                               = UITableView()
-    var following: [FollowingData]              = []
+    let tableView = UITableView()
+    var followers: [FollowersData] = []
     var username: String!
     
     init(for username: String) {
-        super.init(nibName: nil, bundle: nil)
         self.username = username
-        title = "Following"
+        super.init(nibName: nil, bundle: nil)
+        title = "Followers"
+        
     }
     
     required init?(coder: NSCoder) {
@@ -25,71 +26,71 @@ class FollowingVC: FDataLoadingVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureViewContoller()
         configureTableView()
-        getFollowing(username: username)
+        getFollowers(username: username)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        configureViewContoller()
         configureNavigationBar()
     }
     
     private func configureViewContoller() {
-        
-        view.backgroundColor                    = .systemBackground
+        view.backgroundColor = .systemBackground
     }
     
     private func configureNavigationBar(){
-        
         let tabBar = tabBarController
         tabBar?.navigationController?.setNavigationBarHidden(false, animated: false)
-        tabBar?.navigationItem.title = "Following"
+        tabBar?.navigationItem.title = "Followers"
         
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         navigationController?.navigationBar.shadowImage = UIImage()
     }
 
-    
     private func configureTableView() {
         view.addSubview(tableView)
+        
         tableView.frame = .init(
             x: 0,
             y: 100,
-            width: 389,
+            width: 388,
             height: 800)
         
         tableView.rowHeight = 75
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .singleLine
-        tableView.backgroundColor               = .systemBackground
+        tableView.backgroundColor = .systemBackground
         tableView.register(
             FollowerAndFollowingCell.self,
             forCellReuseIdentifier: FollowerAndFollowingCell.reuseID)
     }
     
-    private func getFollowing(username: String){
+    private func getFollowers(username: String) {
+       
         showLoadingView()
-        
-        NetworkManager.shared.followingFromID(username: username) { [weak self] result in
+        NetworkManager.shared.followersFromID(username: username) { [weak self] result in
             guard let self = self else { return }
             self.dismissLoadingView()
+            
             switch result {
-            case .success(let following):
-                self.updateUI(with: following)
+            case .success(let followers):
+                self.updateUI(with: followers)
+                
             case .failure(let error):
                 self.presentFAlertOnMainThread(title: "There was a problem", message: error.rawValue, buttonTitle: "Ok", errorType: .networkError)
-                return
             }
         }
     }
     
-    private func updateUI(with following: [FollowingData]){
-        if following.isEmpty{
+    private func updateUI(with followers: [FollowersData]) {
+        
+        if followers.isEmpty{
             print("empty")
         } else {
-            self.following = following
+            self.followers = followers
             DispatchQueue.main.async {
                 self.tableView.reloadData()
                 self.view.bringSubviewToFront(self.tableView)//try to figure out why this happens
@@ -98,27 +99,26 @@ class FollowingVC: FDataLoadingVC {
     }
 }
 
+extension FollowerVC: UITableViewDataSource, UITableViewDelegate{
 
-extension FollowingVC: UITableViewDataSource, UITableViewDelegate{
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell     = tableView.dequeueReusableCell(withIdentifier: FollowerAndFollowingCell.reuseID) as! FollowerAndFollowingCell
-        let following = following[indexPath.row]
-        cell.setFollowing(following: following)
+        let follower = followers[indexPath.row]
+        cell.setFollower(follower: follower)
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return following.count
+        
+        return followers.count
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let destVC = UserInfoVC(FollowersData: nil, FollowingData: following[indexPath.row], for: nil)
+        
+        let destVC = UserInfoVC(FollowersData: followers[indexPath.row], FollowingData: nil, for: nil)
         let navController   = UINavigationController(rootViewController: destVC)
         present(navController, animated: true)
     }
     
 }
-
- 
-

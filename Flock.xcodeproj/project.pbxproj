@@ -250,7 +250,9 @@
 			children = (
 				53A46B5726682FD000B71CA9 /* MainSearchScreenVC.swift */,
 				5393D58A2669931200EBB543 /* FollowingAndFollowerTabBarController.swift */,
-				53E5298E26D7210700B3B103 /* TabBarScreens */,
+				5393D5862669921100EBB543 /* FollowerVC.swift */,
+				5393D5882669921C00EBB543 /* FollowingVC.swift */,
+				53E5298B26D7024100B3B103 /* UserInfoVC.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -310,16 +312,6 @@
 				536C2282269521C500A66D3D /* UserHeaderViewControllerUser.swift */,
 			);
 			path = "optimized so files I dont need anymore";
-			sourceTree = "<group>";
-		};
-		53E5298E26D7210700B3B103 /* TabBarScreens */ = {
-			isa = PBXGroup;
-			children = (
-				5393D5862669921100EBB543 /* FollowerVC.swift */,
-				5393D5882669921C00EBB543 /* FollowingVC.swift */,
-				53E5298B26D7024100B3B103 /* UserInfoVC.swift */,
-			);
-			path = TabBarScreens;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
