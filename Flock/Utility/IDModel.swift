@@ -46,7 +46,6 @@ struct FollowingData: Codable {
     let public_metrics: Metrics
 }
 
-
 struct Metrics: Codable{
     let followers_count: Int
     let following_count: Int

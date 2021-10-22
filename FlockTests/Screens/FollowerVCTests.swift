@@ -1,8 +1,8 @@
 //
-//  MainScreenVCTests.swift
+//  FollowerVCTests.swift
 //  FlockTests
 //
-//  Created by Wook Rhyu on 8/9/21.
+//  Created by Wook Rhyu on 9/10/21.
 //
 
 import Foundation
@@ -11,16 +11,14 @@ import SnapshotTesting
 
 @testable import Flock
 
-final class MainScreenVCTests: XCTestCase {
+final class FollowerVCTests: XCTestCase {
     
-    var sut: MainSearchScreenVC!
+    var sut: FollowerVC!
     
     func test_init() {
         
-        sut = MainSearchScreenVC()
+        sut = FollowerVC()
         
         assertSnapshot(matching: sut, as: .image)
     }
-    
-    
 }

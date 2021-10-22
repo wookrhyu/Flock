@@ -16,4 +16,8 @@ extension UIViewController {
             self.present(alertVC, animated: true)
         }
     }
+    
+    func clearData(){
+        
+    }
 }

@@ -13,6 +13,8 @@ class FollowerVC: FDataLoadingVC {
     var followers: [FollowersData] = []
     var username: String!
     
+    let background:UIColor = Colors.background
+    
     init(for username: String) {
         self.username = username
         super.init(nibName: nil, bundle: nil)
@@ -37,39 +39,49 @@ class FollowerVC: FDataLoadingVC {
     }
     
     private func configureViewContoller() {
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = Colors.lightGreyBlue
     }
     
     private func configureNavigationBar(){
         let tabBar = tabBarController
         tabBar?.navigationController?.setNavigationBarHidden(false, animated: false)
-        tabBar?.navigationItem.title = "Followers"
+        tabBar?.navigationController?.navigationBar.tintColor = Colors.darkGreyBlue
+        tabBar?.navigationItem.hidesBackButton = true
+        tabBar?.navigationItem.leftBarButtonItem = UIBarButtonItem(image: SFSymbols.back, style: .plain, target: self, action: #selector(goBack))
         
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         navigationController?.navigationBar.shadowImage = UIImage()
+        
+    }
+    
+    @objc private func goBack() {
+        _ = navigationController?.popViewController(animated: true)
+        followers.removeAll()
+        NetworkManager.shared.arrayOfFollowers.removeAll()
+        NetworkManager.shared.arrayOfFollowing.removeAll()
+        tableView.reloadData()
     }
 
     private func configureTableView() {
         view.addSubview(tableView)
         
         tableView.frame = .init(
-            x: 0,
+            x: 5,
             y: 100,
-            width: 388,
-            height: 800)
-        
-        tableView.rowHeight = 75
+            width: 380,
+            height: 670)
+        tableView.rowHeight = 77
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.separatorStyle = .singleLine
-        tableView.backgroundColor = .systemBackground
+        tableView.separatorStyle = .none
+        tableView.backgroundColor = Colors.lightGreyBlue
+        tableView.layer.cornerRadius = 10
         tableView.register(
             FollowerAndFollowingCell.self,
             forCellReuseIdentifier: FollowerAndFollowingCell.reuseID)
     }
     
     private func getFollowers(username: String) {
-       
         showLoadingView()
         NetworkManager.shared.followersFromID(username: username) { [weak self] result in
             guard let self = self else { return }
@@ -86,7 +98,6 @@ class FollowerVC: FDataLoadingVC {
     }
     
     private func updateUI(with followers: [FollowersData]) {
-        
         if followers.isEmpty{
             print("empty")
         } else {
@@ -102,20 +113,17 @@ class FollowerVC: FDataLoadingVC {
 extension FollowerVC: UITableViewDataSource, UITableViewDelegate{
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell     = tableView.dequeueReusableCell(withIdentifier: FollowerAndFollowingCell.reuseID) as! FollowerAndFollowingCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: FollowerAndFollowingCell.reuseID) as! FollowerAndFollowingCell
         let follower = followers[indexPath.row]
         cell.setFollower(follower: follower)
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return followers.count
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         let destVC = UserInfoVC(FollowersData: followers[indexPath.row], FollowingData: nil, for: nil)
         let navController   = UINavigationController(rootViewController: destVC)
         present(navController, animated: true)

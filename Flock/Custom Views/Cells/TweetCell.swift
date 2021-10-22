@@ -14,7 +14,7 @@ class TweetCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style:style, reuseIdentifier: reuseIdentifier)
         configureTweetLabel()
-        backgroundColor = .systemBackground
+        backgroundColor = Colors.background
     }
     
     private func configureTweetLabel() {
@@ -36,5 +36,6 @@ class TweetCell: UITableViewCell {
     
     func setTweet(tweetData: TweetsData) {
         tweet.text = tweetData.text
+        tweet.textColor = Colors.darkGreyBlue
     }
 }

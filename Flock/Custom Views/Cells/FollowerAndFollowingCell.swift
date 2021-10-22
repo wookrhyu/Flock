@@ -24,8 +24,9 @@ class FollowerAndFollowingCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        backgroundColor = .systemBackground
+        backgroundColor = Colors.lightGreyBlue
         configureContainerView()
+        configureTextColors()
         configureImageUsernameHandle()
         configureText()
         configureStackViews()
@@ -39,9 +40,9 @@ class FollowerAndFollowingCell: UITableViewCell {
 
         addSubview(containerView)
         containerView.translatesAutoresizingMaskIntoConstraints = false
-        containerView.backgroundColor = .white
-        containerView.layer.cornerRadius = 3.0
-        containerView.dropShadow()
+        containerView.backgroundColor = Colors.background
+        containerView.layer.cornerRadius = 10
+        contentView.dropShadow()
         
         NSLayoutConstraint.activate([
               containerView.centerYAnchor.constraint(equalTo: centerYAnchor),
@@ -67,6 +68,14 @@ class FollowerAndFollowingCell: UITableViewCell {
             usernameLabel.heightAnchor.constraint(equalToConstant: 40),
         ])
         
+    }
+    
+    private func configureTextColors() {
+        usernameLabel.textColor = Colors.darkGreyBlue
+        followerText.textColor = Colors.greyBlue
+        followerCount.textColor = Colors.greyBlue
+        followingText.textColor = Colors.greyBlue
+        followingCount.textColor = Colors.greyBlue
     }
     
     private func configureStackViews() {
@@ -100,7 +109,7 @@ class FollowerAndFollowingCell: UITableViewCell {
     
     private func configureText() {
         
-        let textColor:UIColor = Colors.lightBlack
+        let textColor:UIColor = UIColor.black
         
         followerText.text = "followers"
         followingText.text = "following"

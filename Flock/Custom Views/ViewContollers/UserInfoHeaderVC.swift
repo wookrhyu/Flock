@@ -19,14 +19,19 @@ struct followersOrFollowingOrUserData {
 
 class UserInfoHeaderVC: UIViewController {
     
-    let avatarImageView         = FAvatarImageView(frame: .zero)
-    let usernameLabel           = FTitleLabel(textAlignment: .left, fontSize: 30, weight: .bold)
-    let twitterhandle           = FSecondaryTitleLabel(textAlignment: .left, fontSize: 17)
-    let bio                     = FBodyLabel(textAlignment: .center)
-    let followerText            = FTitleLabel(textAlignment: .left, fontSize: 18, weight: .semibold)
-    let followingText           = FTitleLabel(textAlignment: .left, fontSize: 18, weight: .semibold)
-    let followerCount           = FTitleLabel(textAlignment: .left, fontSize: 16, weight: .semibold)
-    let followingCount          = FTitleLabel(textAlignment: .left, fontSize: 16, weight: .semibold)
+    let avatarImageView = FAvatarImageView(frame: .zero)
+    let usernameLabel = FTitleLabel(textAlignment: .left, fontSize: 30, weight: .bold)
+    let twitterhandle = FSecondaryTitleLabel(textAlignment: .left, fontSize: 17)
+    let bio = FBodyLabel(textAlignment: .center)
+    let followerText = FTitleLabel(textAlignment: .left, fontSize: 18, weight: .semibold)
+    let followingText = FTitleLabel(textAlignment: .left, fontSize: 18, weight: .semibold)
+    let followerCount = FTitleLabel(textAlignment: .left, fontSize: 16, weight: .semibold)
+    let followingCount = FTitleLabel(textAlignment: .left, fontSize: 16, weight: .semibold)
+    
+    let stackUsernameHandleMetrics = UIStackView()
+    let stackMetrics = UIStackView()
+    let stackFollowersCount = UIStackView()
+    let stackFollowingCount = UIStackView()
     
     var followersData: FollowersData?
     var followingData: FollowingData?
@@ -36,11 +41,12 @@ class UserInfoHeaderVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor    = .systemBackground
+        view.backgroundColor = Colors.background
+        view.layer.cornerRadius = 10
         configureHeaderInfo()
         setElementsToVariables(for: headerData!)
-        configureImageAndUserName()
-        configureFollowersAndFollowing()
+        configureImageAndBio()
+        configureStackViews()
     }
      
     init(FollwersData: FollowersData?, FollowingData: FollowingData?, UserData: User?) {
@@ -93,33 +99,24 @@ class UserInfoHeaderVC: UIViewController {
         bio.numberOfLines       = 4
         followerCount.text      = data.followers_count
         followingCount.text     = data.following_count
-        bio.backgroundColor     = .systemBackground
+        bio.backgroundColor     = Colors.background
         bio.textColor           = .black
-        bio.dropShadow()
+        avatarImageView.dropShadow()
+        avatarImageView.layer.cornerRadius = 10
+        avatarImageView.layer.masksToBounds = true
+        
     }
     
-    private func configureImageAndUserName() {
+    private func configureImageAndBio() {
         view.addSubview(avatarImageView)
-        view.addSubview(usernameLabel)
-        view.addSubview(twitterhandle)
         view.addSubview(bio)
-        
-        avatarImageView.dropShadow()
         
         NSLayoutConstraint.activate([
             avatarImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 5),
             avatarImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5),
             avatarImageView.widthAnchor.constraint(equalToConstant: 95),
             avatarImageView.heightAnchor.constraint(equalToConstant: 95),
-            
-            usernameLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
-            usernameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 5),
-            usernameLabel.heightAnchor.constraint(equalToConstant: 33),
-            
-            twitterhandle.topAnchor.constraint(equalTo: usernameLabel.bottomAnchor, constant: 0),
-            twitterhandle.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 5),
-            twitterhandle.heightAnchor.constraint(equalToConstant: 17),
-            
+        
             bio.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 5),
             bio.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5),
             bio.widthAnchor.constraint(equalToConstant: 370),
@@ -127,46 +124,45 @@ class UserInfoHeaderVC: UIViewController {
         ])
     }
     
-    private func configureFollowersAndFollowing() {
-        view.addSubview(followerText)
-        view.addSubview(followingText)
-        view.addSubview(followerCount)
-        view.addSubview(followingCount)
+    private func configureStackViews() {
+        view.addSubview(stackUsernameHandleMetrics)
+        stackUsernameHandleMetrics.addArrangedSubview(usernameLabel)
+        stackUsernameHandleMetrics.addArrangedSubview(twitterhandle)
+        stackUsernameHandleMetrics.addArrangedSubview(stackMetrics)
+        stackUsernameHandleMetrics.axis = .vertical
+        stackUsernameHandleMetrics.distribution = .fillProportionally
+        stackUsernameHandleMetrics.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            stackUsernameHandleMetrics.topAnchor.constraint(equalTo: view.topAnchor, constant: 5),
+            stackUsernameHandleMetrics.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 5),
+            stackUsernameHandleMetrics.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5),
+            stackUsernameHandleMetrics.heightAnchor.constraint(equalToConstant: 95)
+        ])
         
         followerText.text       = "followers"
         followingText.text      = "following"
         followerCount.text      = headerData!.followers_count
         followingCount.text     = headerData!.following_count
-        
-        
-        
-        
-        NSLayoutConstraint.activate([
-            followerText.topAnchor.constraint(equalTo: twitterhandle.bottomAnchor, constant: 3),
-            followerText.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 15),
-            followerText.heightAnchor.constraint(equalToConstant: 23),
-            followerText.widthAnchor.constraint(equalToConstant: 100),
-            
-            followingText.topAnchor.constraint(equalTo: twitterhandle.bottomAnchor, constant: 5),
-            followingText.leadingAnchor.constraint(equalTo: followerText.trailingAnchor, constant: 40),
-            followingText.heightAnchor.constraint(equalToConstant: 23),
-            followingText.widthAnchor.constraint(equalToConstant: 100),
-            
-            followerCount.topAnchor.constraint(equalTo: followerText.bottomAnchor, constant: 0),
-            followerCount.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 15),
-            followerCount.heightAnchor.constraint(equalToConstant: 17),
-            followerCount.widthAnchor.constraint(equalToConstant: 100),
-            
-            followingCount.topAnchor.constraint(equalTo: followerText.bottomAnchor, constant: 0),
-            followingCount.leadingAnchor.constraint(equalTo: followerCount.trailingAnchor, constant: 40),
-            followingCount.heightAnchor.constraint(equalToConstant: 17),
-            followingCount.widthAnchor.constraint(equalToConstant: 100)
-        ])
-        
-        
+
+        stackMetrics.addArrangedSubview(stackFollowersCount)
+        stackMetrics.addArrangedSubview(stackFollowingCount)
+        stackMetrics.axis = .horizontal
+        stackMetrics.distribution = .fillEqually
+        stackMetrics.translatesAutoresizingMaskIntoConstraints = false
+
+        stackFollowersCount.addArrangedSubview(followerText)
+        stackFollowersCount.addArrangedSubview(followerCount)
+        stackFollowersCount.axis = .vertical
+        stackFollowersCount.distribution = .fillEqually
+        stackFollowersCount.translatesAutoresizingMaskIntoConstraints = false
+
+        stackFollowingCount.addArrangedSubview(followingText)
+        stackFollowingCount.addArrangedSubview(followingCount)
+        stackFollowingCount.axis = .vertical
+        stackFollowingCount.distribution = .fillEqually
+        stackFollowingCount.translatesAutoresizingMaskIntoConstraints = false
         
     }
-    
-    
 
 }

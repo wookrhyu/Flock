@@ -23,7 +23,7 @@ class UserInfoVC: FDataLoadingVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = Colors.lightGreyBlue
         layoutBaseViews()
         configureVCFunction()
         configureTableView()
@@ -74,12 +74,25 @@ class UserInfoVC: FDataLoadingVC {
     
     private func configureNavigationBar() {
         let navbar                  = navigationController
-        navbar?.setNavigationBarHidden(true, animated: false)
+        if followersData == nil && followingData == nil {
+            navbar?.setNavigationBarHidden(true, animated: false)
+        }else {
+            navbar?.setNavigationBarHidden(false, animated: false)
+            let backButton = UIBarButtonItem(image:SFSymbols.back ,style: .done, target: self, action: #selector(goBack))
+            navigationItem.leftBarButtonItem = backButton
+            navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+            navigationController?.navigationBar.shadowImage = UIImage()
+            navigationItem.title = ""
+            navigationController?.navigationBar.tintColor = Colors.darkGreyBlue
+        }
+    }
+    
+    @objc private func goBack() {
+        dismiss(animated: true)
     }
     
     private func layoutBaseViews() {
         view.addSubview(headerView)
-        
         headerView.translatesAutoresizingMaskIntoConstraints        = false
         headerView.backgroundColor      = .systemBackground
         headerView.dropShadow()
@@ -94,19 +107,31 @@ class UserInfoVC: FDataLoadingVC {
     
     func add(childVC: UIViewController, to containerView: UIView){
         addChild(childVC)
+        containerView.layer.cornerRadius = 10
         containerView.addSubview(childVC.view)
+        childVC.didMove(toParent: self)
+        childVC.view.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            childVC.view.topAnchor.constraint(equalTo: containerView.topAnchor),
+            childVC.view.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+            childVC.view.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+            childVC.view.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
+        ])
     }
     
     private func configureTableView() {
         view.addSubview(tweetTable)
         
         tweetTable.translatesAutoresizingMaskIntoConstraints = false
-        tweetTable.frame                = view.bounds
-        tweetTable.rowHeight            = 90
-        tweetTable.delegate             = self
-        tweetTable.dataSource           = self
+        tweetTable.frame = view.bounds
+        tweetTable.rowHeight = 90
+        tweetTable.delegate = self
+        tweetTable.dataSource = self
         tweetTable.register(TweetCell.self, forCellReuseIdentifier: "TweetCell")
-        tweetTable.backgroundColor      = .systemBackground
+        tweetTable.backgroundColor = Colors.lightGreyBlue
+        tweetTable.layer.cornerRadius = 10
+        tweetTable.separatorStyle = .none
+        
         NSLayoutConstraint.activate([
             tweetTable.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: padding),
             tweetTable.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),

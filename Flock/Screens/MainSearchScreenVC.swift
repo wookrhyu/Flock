@@ -9,29 +9,22 @@ import UIKit
 
 class MainSearchScreenVC: UIViewController {
     
-    let logoImageView           = UIImageView()
-    let textContainer           = UIView()
-    let logoBird                = UIImageView()
-    let twitterHandleTextField  = FTextField()
-    let welcomeText             = FTitleLabel(textAlignment: .left, fontSize: 50, weight: .bold)
-    let welcomeDescription      = FBodyLabel(textAlignment: .left)
-    let searchButton            = FButton(backgroundColor: Colors.twitterBlue, title: "Search")
-    
+    let logoImageView = UIImageView()
+    let textContainer = UIView()
+    let logoBird = UIImageView()
+    let twitterHandleTextField = FTextField()
+    let welcomeText = FTitleLabel(textAlignment: .left, fontSize: 50, weight: .bold)
+    let welcomeDescription = FBodyLabel(textAlignment: .left)
+    let searchButton = FButton(backgroundColor: Colors.lightGreyBlue, title: "Search")
     var isTextEntered: Bool { return twitterHandleTextField.text!.isEmpty }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupMainScreen()
         configureWelcomeText()
         configureTwitterHandleTextField()
         configureSearchButton()
         dissmissKeyboard()
-
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        setupMainScreen()
-        
     }
     
     private func configureWelcomeText(){
@@ -39,9 +32,9 @@ class MainSearchScreenVC: UIViewController {
         view.addSubview(welcomeDescription)
         view.addSubview(logoBird)
         
-        welcomeText.text                    = "Hello!"
-        view.backgroundColor                = .systemBackground
-        logoBird.image                      = Images.logoBird
+        welcomeText.text = "Hello!"
+        
+        logoBird.image = Images.logoBird
         logoBird.translatesAutoresizingMaskIntoConstraints = false
         
         welcomeDescription.text             = "Enter a Twitter handle to see their followers and following!"
@@ -68,6 +61,7 @@ class MainSearchScreenVC: UIViewController {
     func setupMainScreen(){
         twitterHandleTextField.text = ""
         navigationController?.setNavigationBarHidden(true, animated: true)
+        view.backgroundColor = Colors.background
     }
     
     func dissmissKeyboard() {
@@ -77,14 +71,16 @@ class MainSearchScreenVC: UIViewController {
     
     private func configureTwitterHandleTextField() {
         view.addSubview(textContainer)
-        textContainer.backgroundColor                           = .systemGray6
-        textContainer.alpha                                     = 0.7
-        textContainer.layer.cornerRadius                        = 20
-        textContainer.translatesAutoresizingMaskIntoConstraints = false
         
+        textContainer.backgroundColor = .systemGray6
+        textContainer.alpha = 0.7
+        textContainer.layer.cornerRadius = 20
+        textContainer.dropShadow()
+        textContainer.translatesAutoresizingMaskIntoConstraints = false
         textContainer.addSubview(twitterHandleTextField)
-        twitterHandleTextField.delegate                         = self
-        twitterHandleTextField.backgroundColor                  = .none
+        
+        twitterHandleTextField.delegate = self
+        twitterHandleTextField.backgroundColor = .none
         
         NSLayoutConstraint.activate([
             
@@ -122,9 +118,9 @@ class MainSearchScreenVC: UIViewController {
         twitterHandleTextField.resignFirstResponder()
         
         let followingAndFollowerTabBarContoller = FollowingAndFollowerTabBarController()
-        let followingVC                         = FollowingVC(for: twitterHandleTextField.text!)
-        let followerVC                          = FollowerVC(for: twitterHandleTextField.text!)
-        let userVC                              = UserInfoVC(FollowersData: nil, FollowingData: nil, for: twitterHandleTextField.text!)
+        let followingVC = FollowingVC(for: twitterHandleTextField.text!)
+        let followerVC = FollowerVC(for: twitterHandleTextField.text!)
+        let userVC = UserInfoVC(FollowersData: nil, FollowingData: nil, for: twitterHandleTextField.text!)
         followingAndFollowerTabBarContoller.setViewControllers([followerVC, followingVC, userVC], animated: false)
         navigationController?.pushViewController(followingAndFollowerTabBarContoller, animated: true)
     }

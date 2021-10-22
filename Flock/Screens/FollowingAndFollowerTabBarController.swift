@@ -20,39 +20,34 @@ class FollowingAndFollowerTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         configureTabBar()
     }
     
     private func configureTabBar() {
-        let tabColor: UIColor               = .black
+        let tabColor: UIColor = .white
         
-        tabBar.barTintColor                 = .systemBackground
-        tabBar.alpha                        = 0.98
-        tabBar.tintColor                    = tabColor
-        tabBar.unselectedItemTintColor      = tabColor
-        tabBar.layer.cornerRadius           = 10
-        tabBar.layer.maskedCorners          = [ .layerMinXMinYCorner, .layerMaxXMinYCorner]
-        tabBar.layer.masksToBounds          = true
-        tabBar.itemPositioning              = .fill
-        
+        tabBar.barTintColor = Colors.lightGreyBlue
+        tabBar.alpha = 0.98
+        tabBar.tintColor = tabColor
+        tabBar.unselectedItemTintColor = Colors.darkGreyBlue
+        tabBar.layer.cornerRadius = 30
+        tabBar.layer.maskedCorners = [ .layerMinXMinYCorner, .layerMaxXMinYCorner]
+        tabBar.layer.masksToBounds = true
+        tabBar.itemPositioning = .fill
+        tabBar.items?.first?.titlePositionAdjustment = UIOffset(horizontal: 30, vertical: 0)
+        tabBar.items?.last?.titlePositionAdjustment = UIOffset(horizontal: -33, vertical: 0)
+
         let fontAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0, weight: .semibold)]
         UITabBarItem.appearance().setTitleTextAttributes(fontAttributes, for: .normal)
-
-        tabBar.selectionIndicatorImage = UIImage().createSelectionIndicator(color: tabColor, size: CGSize(width: tabBar.frame.width/CGFloat(tabBar.items!.count), height: tabBar.frame.height), lineWidth: 3.0)
     }
     
     class CustomTabBar: UITabBar { 
         override func sizeThatFits(_ size: CGSize) -> CGSize {
             var sizeThatFits = super.sizeThatFits(size)
-            sizeThatFits.height = 70
+            sizeThatFits.height = 80
             return sizeThatFits
         }
     }
-   
 }
 
 
