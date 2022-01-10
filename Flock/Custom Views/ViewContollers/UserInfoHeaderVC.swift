@@ -93,14 +93,14 @@ class UserInfoHeaderVC: UIViewController {
     
     private func setElementsToVariables(for data: followersOrFollowingOrUserData) {
         avatarImageView.downloadImage(fromURL: (data.profile_image_url)!)
-        usernameLabel.text      = data.name
-        twitterhandle.text      = "@\(data.username ?? "'empty'")" //****
-        bio.text                = data.description
-        bio.numberOfLines       = 4
-        followerCount.text      = data.followers_count
-        followingCount.text     = data.following_count
-        bio.backgroundColor     = Colors.background
-        bio.textColor           = .black
+        usernameLabel.text = data.name
+        twitterhandle.text = "@\(data.username ?? "'empty'")" //****
+        bio.text = data.description
+        bio.numberOfLines = 4
+        followerCount.text = data.followers_count
+        followingCount.text = data.following_count
+        bio.backgroundColor = Colors.background
+        bio.textColor = .black
         avatarImageView.dropShadow()
         avatarImageView.layer.cornerRadius = 10
         avatarImageView.layer.masksToBounds = true
@@ -140,10 +140,10 @@ class UserInfoHeaderVC: UIViewController {
             stackUsernameHandleMetrics.heightAnchor.constraint(equalToConstant: 95)
         ])
         
-        followerText.text       = "followers"
-        followingText.text      = "following"
-        followerCount.text      = headerData!.followers_count
-        followingCount.text     = headerData!.following_count
+        followerText.text = "followers"
+        followingText.text = "following"
+        followerCount.text = headerData!.followers_count
+        followingCount.text = headerData!.following_count
 
         stackMetrics.addArrangedSubview(stackFollowersCount)
         stackMetrics.addArrangedSubview(stackFollowingCount)

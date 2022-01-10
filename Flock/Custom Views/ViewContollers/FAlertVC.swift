@@ -9,10 +9,10 @@ import UIKit
 
 class FAlertVC: UIViewController {
     
-    let containerView                   = FAlertContainerView()
-    let titleLabel                      = FTitleLabel(textAlignment: .center, fontSize: 20, weight: .bold)
-    let messageLabel                    = FBodyLabel(textAlignment: .center)
-    let searchButton                    = FButton(backgroundColor: Colors.lightGreyBlue, title: "Ok")
+    let containerView = FAlertContainerView()
+    let titleLabel = FTitleLabel(textAlignment: .center, fontSize: 20, weight: .bold)
+    let messageLabel = FBodyLabel(textAlignment: .center)
+    let searchButton = FButton(backgroundColor: Colors.lightGreyBlue, title: "Ok")
     
     var alertTitle: String?
     var message: String?
@@ -22,10 +22,10 @@ class FAlertVC: UIViewController {
     let padding: CGFloat = 20
     
     init(title: String, message: String, buttonTitle: String, errorType: FError) {
-        self.alertTitle                 = title
-        self.message                    = message
-        self.buttonTitle                = buttonTitle
-        self.errorType                  = errorType
+        self.alertTitle = title
+        self.message = message
+        self.buttonTitle = buttonTitle
+        self.errorType = errorType
         super.init(nibName: nil, bundle: nil)
         }
     
@@ -35,7 +35,7 @@ class FAlertVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor            = UIColor.black.withAlphaComponent(0.75)
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.75)
         
         configureContainerView()
         configureTitleLabel()
@@ -90,7 +90,7 @@ class FAlertVC: UIViewController {
     
     func configureMessageLabel() {
         view.addSubview(messageLabel)
-        messageLabel.text           = message ?? "Unable to complete request"
+        messageLabel.text = message ?? "Unable to complete request"
         messageLabel.numberOfLines  = 4
         
         NSLayoutConstraint.activate([

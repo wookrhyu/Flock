@@ -63,12 +63,7 @@ class FollowingVC: FDataLoadingVC {
     private func configureTableView() {
         view.addSubview(tableView)
         
-        tableView.frame = .init(
-            x: 0,
-            y: 100,
-            width: 389,
-            height: 800)
-        
+        tableView.frame = self.view.frame
         tableView.rowHeight = 75
         tableView.delegate = self
         tableView.dataSource = self

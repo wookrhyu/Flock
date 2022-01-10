@@ -19,15 +19,15 @@ class FSecondaryTitleLabel: UILabel {
     
     convenience init(textAlignment: NSTextAlignment, fontSize: CGFloat) {
         self.init(frame: .zero)
-        self.textAlignment          = textAlignment
-        self.font                   = UIFont.systemFont(ofSize: fontSize, weight: .semibold)
+        self.textAlignment = textAlignment
+        self.font = UIFont.systemFont(ofSize: fontSize, weight: .semibold)
     }
     
     private func configure() {
-        textColor                   = .secondaryLabel
-        adjustsFontSizeToFitWidth   = true
-        minimumScaleFactor          = 0.9
-        lineBreakMode               = .byTruncatingTail
+        textColor = .secondaryLabel
+        adjustsFontSizeToFitWidth = true
+        minimumScaleFactor = 0.9
+        lineBreakMode = .byTruncatingTail
         translatesAutoresizingMaskIntoConstraints = false
     }
 

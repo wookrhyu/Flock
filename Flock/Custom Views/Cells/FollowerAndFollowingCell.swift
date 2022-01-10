@@ -10,6 +10,7 @@ import UIKit
 class FollowerAndFollowingCell: UITableViewCell {
     
     static let reuseID = "FAFcell"
+    
     let containerView = UIView()
     let avatarImageView = FAvatarImageView(frame: .zero)
     let usernameLabel = FTitleLabel(textAlignment: .left, fontSize: 25, weight: .bold)

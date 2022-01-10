@@ -21,14 +21,14 @@ class FButton: UIButton {
     convenience init(backgroundColor: UIColor, title: String) {
         self.init(frame: .zero)
         self.setTitle(title, for: .normal)
-        self.backgroundColor                        = backgroundColor
+        self.backgroundColor = backgroundColor
     }
     
     private func configure() {
-        layer.cornerRadius                          = 20
-        titleLabel?.font                            = UIFont.preferredFont(forTextStyle: .headline)
+        layer.cornerRadius = 20
+        titleLabel?.font = UIFont.preferredFont(forTextStyle: .headline)
         setTitleColor(.white, for: .normal)
-        translatesAutoresizingMaskIntoConstraints   = false
+        translatesAutoresizingMaskIntoConstraints = false
     }
     
 }

@@ -37,8 +37,8 @@ class MainSearchScreenVC: UIViewController {
         logoBird.image = Images.logoBird
         logoBird.translatesAutoresizingMaskIntoConstraints = false
         
-        welcomeDescription.text             = "Enter a Twitter handle to see their followers and following!"
-        welcomeDescription.numberOfLines    = 2
+        welcomeDescription.text = "Enter a Twitter handle to see their followers and following!"
+        welcomeDescription.numberOfLines = 2
         
         NSLayoutConstraint.activate([
             welcomeText.topAnchor.constraint(equalTo: view.topAnchor, constant: 200),

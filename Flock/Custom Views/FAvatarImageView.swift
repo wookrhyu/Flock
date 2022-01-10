@@ -9,7 +9,7 @@ import UIKit
 
 class FAvatarImageView: UIImageView {
     
-    let cache                   = NetworkManager.shared.cache
+    let cache = NetworkManager.shared.cache
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -21,10 +21,10 @@ class FAvatarImageView: UIImageView {
     }
     
     private func configure() {
-        layer.cornerRadius  = 3
-        clipsToBounds       = true
+        layer.cornerRadius = 3
+        clipsToBounds = true
         translatesAutoresizingMaskIntoConstraints = false
-        contentMode         = .scaleAspectFill
+        contentMode = .scaleAspectFill
     }
     
     func downloadImage(fromURL url: String){

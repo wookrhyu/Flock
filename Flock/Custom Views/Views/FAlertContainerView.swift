@@ -19,10 +19,10 @@ class FAlertContainerView: UIView {
     }
     
     private func configure(){
-        backgroundColor       = .systemBackground
-        layer.cornerRadius    = 5
-        layer.borderWidth     = 1
-        layer.borderColor     = UIColor.white.cgColor
+        backgroundColor = .systemBackground
+        layer.cornerRadius = 5
+        layer.borderWidth = 1
+        layer.borderColor = UIColor.white.cgColor
         translatesAutoresizingMaskIntoConstraints = false
         
     }
